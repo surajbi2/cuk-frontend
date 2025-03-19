@@ -142,10 +142,10 @@ export default {
   setup() {
     const activeIndex = ref(0)
     const images = [
-      "/src/assets/bg.jpg",
-      "/src/assets/aerial.jpg",
-      "/src/assets/DJI_0209.jpg",
-      "/src/assets/DJI_0219.jpg",
+      "/bg.jpg",
+      "/aerial.jpg",
+      "/DJI_0209.jpg",
+      "/DJI_0219.jpg",
     ]
 
     const initiatives = [
