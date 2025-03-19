@@ -34,10 +34,10 @@
         <ul
           class="absolute hidden group-hover:flex flex-col bg-[#d8315b] rounded-lg shadow-lg py-2 mt-0 min-w-[15rem] text-left transition duration-300 ease-in-out z-10">
           <li>
-            <a href="/CommitteeMembers"
+            <router-link to="/CommitteeMembers"
               class="block relative hover:text-white no-underline px-4 py-1 hover:before:scale-x-50 before:scale-x-0 before:origin-left before:content-[''] before:absolute before:bottom-0 before:left-5 before:right-0 before:h-0.5 before:bg-white before:transition-transform before:duration-300 before:ease-linear" target="_blank">
               IQAC Committee
-            </a>
+            </router-link>
           </li>
           <li>
             <router-link to="/mom-reports"
@@ -221,13 +221,7 @@
           NIRF
         </router-link>
       </li>
-      <!-- staff members -->
-      <li class="relative group">
-        <a href="/CommitteeMembers"
-          class="relative hover:text-white no-underline px-4 py-1 hover:before:scale-x-50 before:scale-x-0 before:origin-center before:content-[''] before:absolute before:bottom-0 before:left-0 before:right-0 before:h-0.5 before:bg-white before:transition-transform before:duration-300 before:ease-linear">
-          Staff Members
-        </a>
-      </li>
+      
       <!-- Gallery -->
       <li class="relative group">
         <router-link to="/Gallery"
