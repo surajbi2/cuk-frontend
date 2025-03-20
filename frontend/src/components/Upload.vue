@@ -48,7 +48,7 @@
 
 <script>
 import axios from 'axios';
-
+import { API_PATH } from '../path/apiPath';
 export default {
   data() {
     return {

@@ -92,6 +92,7 @@
 </template>
   
   <script>
+  import { API_PATH } from '../path/apiPath';
   import axios from 'axios';
   import { RouterLink } from 'vue-router';
 
