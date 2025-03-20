@@ -1,5 +1,5 @@
 <template>
-  <header class="bg-[#fffaff] text-black text-center pt-4 flex flex-col md:flex-row items-center">
+  <header class="bg-[#fffaff] text-blue-950 text-center pt-1 flex flex-col md:flex-row items-center">
     <img src="/logo.png" alt="" class="sm:w-40 w-14 h-auto md:pl-10">
     <div class="px-10 flex flex-col justify-center items-center md:w-[80%]">
       <p>ಕರ್ನಾಟಕ ಕೇಂದ್ರೀಯ ವಿಶ್ವವಿದ್ಯಾಲಯ | कर्नाटक केंद्रीय विश्‍वविद्यालय</p>

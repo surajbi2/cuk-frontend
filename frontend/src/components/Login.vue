@@ -70,8 +70,17 @@
 </template>
 
 <script>
-  import { API_PATH } from '../path/apiPath.js';
+  import { useRouter } from 'vue-router';
+import { API_PATH } from '../path/apiPath.js';
+
 export default {
+  setup() {
+    const router = useRouter();
+
+    return {
+      router
+    };
+  },
   data() {
     return {
       email: '',
@@ -92,7 +101,7 @@ export default {
         if (response.ok) {
           sessionStorage.setItem('userToken', data.token);
           sessionStorage.setItem('userRole', data.role);
-          window.location.href = '/upload';
+          this.router.push('/upload'); // Use Vue Router for navigation
         } else {
           this.error = data.error || 'Login failed';
         }
@@ -103,6 +112,7 @@ export default {
     }
   }
 };
+
 </script>
 
 <style scoped>

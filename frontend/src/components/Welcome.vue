@@ -1,33 +1,38 @@
 <template>
   <div class="min-h-screen bg-gray-50">
     <!-- Custom Carousel -->
-    <section class="relative h-[65vh] w-[98%] mx-auto mt-4 overflow-hidden rounded-[2rem] shadow-2xl hidden md:block">
+    <section class="relative h-[50vh] w-[98%] mx-auto mt-4 overflow-hidden rounded-[2rem] shadow-2xl hidden md:block">
       <div class="relative h-full">
-        <div 
-          v-for="(image, index) in images"
-          :key="index"
-          class="absolute inset-0 transition-opacity duration-1000"
-          :class="{ 'opacity-100': activeIndex === index, 'opacity-0': activeIndex !== index }"
-        >
-          <img 
-            :src="image" 
-            alt="Campus View"
-            class="w-full h-full object-cover object-center"
-          />
-          <div class="absolute inset-0 bg-gradient-to-t from-gray-900/60 via-gray-900/20 to-transparent"></div>
-        </div>
-      </div>
+    <div 
+      v-for="(image, index) in images"
+      :key="index"
+      class="absolute inset-0 transition-opacity duration-1000"
+      :class="{ 'opacity-100': activeIndex === index, 'opacity-0': activeIndex !== index }"
+    >
+      <img 
+        :src="image.src" 
+        :alt="image.title"
+        class="w-full h-full object-cover object-center"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-gray-900/60 via-gray-900/20 to-transparent"></div>
+    </div>
+  </div>
 
-      <!-- Carousel Indicators -->
-      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-10">
-        <button 
-          v-for="(_, index) in images"
-          :key="index"
-          @click="activeIndex = index"
-          class="w-8 h-1.5 rounded-full transition-all duration-300 bg-white/30 hover:bg-white/50"
-          :class="{ '!bg-white w-12': activeIndex === index }"
-        />
-      </div>
+  <!-- Image Title -->
+  <div class="absolute bottom-12 left-1/2 -translate-x-1/2 text-white text-lg font-semibold bg-black px-4 py-2 rounded-lg">
+    {{ images[activeIndex].title }}
+  </div>
+
+  <!-- Carousel Indicators -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+    <button 
+      v-for="(_, index) in images"
+      :key="index"
+      @click="activeIndex = index"
+      class="w-8 h-1.5 rounded-full transition-all duration-300 bg-white/30 hover:bg-white/50"
+      :class="{ '!bg-white w-12': activeIndex === index }"
+    />
+  </div>
     </section>
 
     <!-- Content Section -->
@@ -96,9 +101,8 @@
             <div class="space-y-8">
               <div class="space-y-6 text-gray-600 leading-relaxed">
                 <p class="text-lg">
-                  The Central University of Karnataka established its 
-                  <span class="font-semibold text-indigo-700 bg-indigo-50 px-2 py-1 rounded-lg">Internal Quality Assurance Cell (IQAC)</span> 
-                  in 2013 to ensure excellence across all academic and administrative operations through systematic quality enhancement initiatives.
+                  The <strong>Central University of Karnataka</strong> established its 
+                  <strong>Internal Quality Assurance Cell (IQAC)</strong> in 2013 to ensure excellence across all academic and administrative operations through systematic quality enhancement initiatives.
                 </p>
 
                 <p class="text-lg">
@@ -112,10 +116,10 @@
                   <div 
                     v-for="(initiative, index) in initiatives"
                     :key="index"
-                    class="p-6 bg-gray-50 rounded-xl border-l-4 border-indigo-600 hover:bg-white transition-all duration-300"
+                    class="p-6 bg-gray-50 rounded-xl border-l-4 border-amber-600 hover:bg-white transition-all duration-300"
                   >
                     <div class="flex items-start gap-4">
-                      <div class="w-10 h-10 bg-indigo-600 text-white rounded-full flex items-center justify-center shrink-0">
+                      <div class="w-10 h-10 bg-amber-800 text-white rounded-full flex items-center justify-center shrink-0">
                         {{ index + 1 }}
                       </div>
                       <div>
@@ -142,11 +146,12 @@ export default {
   setup() {
     const activeIndex = ref(0)
     const images = [
-      "/bg.jpg",
-      "/aerial.jpg",
-      "/DJI_0209.jpg",
-      "/DJI_0219.jpg",
-    ]
+  { src: "/bg.jpg", title: "Administrative Block" },
+  { src: "/aerial.jpg", title: "Academic Block" },
+  { src: "/DJI_0209.jpg", title: "Entrance" },
+  { src: "/DJI_0219.JPG", title: "Aerial View of Campus" }
+]
+
 
     const initiatives = [
       {
