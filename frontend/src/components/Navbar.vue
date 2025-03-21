@@ -1,5 +1,5 @@
 <template >
-  <nav class="bg-[#d8315b] text-white text-center py-2 rounded-3xl mt-1 relative mx-1">
+  <nav class="bg-[#880d1e] text-white text-center py-2 rounded-3xl mt-1 relative mx-1">
     <div class="flex justify-between items-center px-4">
       <div class="text-xl font-bold md:hidden">Menu</div>
       <div class="md:hidden">

@@ -64,15 +64,15 @@
             </div>
 
             <div class="flex items-center gap-2">
-              <a
-                :href="`${API_PATH}/api/files/notices/download/` + notice.id"
-                class="p-4 text-indigo-500 hover:text-white rounded-lg hover:bg-blue-600  transition-colors"
-                title="Download"
-              >
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
-                </svg>
-              </a>
+              <a :href="API_PATH ? `${API_PATH}/api/files/notices/download/${notice.id}` : '#'" 
+   class="p-4 text-indigo-500 hover:text-white rounded-lg hover:bg-blue-600 transition-colors"
+   title="Download"
+   @click="handleDownload(notice.id)">
+  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+  </svg>
+</a>
+
 
               <div v-if="userRole === 'admin'" class="flex items-center gap-2">
                 <template v-if="showPending">
@@ -129,6 +129,7 @@ import { API_PATH } from '../path/apiPath';
 export default {
   data() {
     return {
+      API_PATH,
       notices: [],
       userRole: "",
       showPending: false, // Admin can toggle between pending and approved notices
@@ -160,7 +161,14 @@ export default {
         this.$router.push("/upload");
       }
     },
-
+async handleDownload(noticeId) {
+  if (!API_PATH) {
+    alert("API Path is not set properly!");
+    return;
+  }
+  const downloadUrl = `${API_PATH}/api/files/notices/download/${noticeId}`;
+  window.location.href = downloadUrl;
+},
     async deleteNotice(noticeId) {
   if (confirm("Are you sure you want to delete this notice?")) {
     try {
