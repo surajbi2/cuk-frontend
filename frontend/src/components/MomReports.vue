@@ -49,9 +49,10 @@
 
             <div class="flex items-center gap-2">
               <a
-                :href="`${API_PATH}/api/mom/download/${report.id}`"
+                :href="API_PATH ? `${API_PATH}/api/mom/download/${report.id}` : '#'"
                 class="p-4 text-indigo-500 hover:text-white rounded-lg hover:bg-blue-500"
                 title="Download"
+                @click="handleDownload(report.id)"
               >
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
@@ -93,6 +94,7 @@
   export default {
     data() {
   return {
+    API_PATH,
     reports: [],
     loading: true,
     errorMessage: '',
@@ -113,7 +115,14 @@ methods: {
       this.loading = false;
     }
   },
-
+  async handleDownload(noticeId) {
+  if (!API_PATH) {
+    alert("API Path is not set properly!");
+    return;
+  }
+  const downloadUrl = `${API_PATH}/api/mom/download/${noticeId}`;
+  window.location.href = downloadUrl;
+},
   async deleteReport(id) {
     if (!confirm('Are you sure you want to delete this file?')) return;
 
