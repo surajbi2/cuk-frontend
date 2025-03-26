@@ -95,16 +95,22 @@ export default {
   },
   created() { this.checkAuth(); },
   methods: {
-    checkAuth() { this.isLoggedIn = !!sessionStorage.getItem('userToken'); },
-    handleAuth() {
-      if (this.isLoggedIn) {
-        sessionStorage.removeItem('userToken');
-        this.$router.push('/');
-      } else {
-        this.$router.push('/login');
-      }
-      this.isLoggedIn = !this.isLoggedIn;
-    }
+    checkAuth() {
+  const token = sessionStorage.getItem('userToken');
+  this.isLoggedIn = !!token; // Ensure it's only true if a valid token exists
+},    
+handleAuth() {
+  if (this.isLoggedIn) {
+    // Logout process
+    sessionStorage.removeItem('userToken');
+    this.isLoggedIn = false;
+    this.$router.push('/');
+  } else {
+    // Redirect to login page
+    this.isLoggedIn = true;
+    this.$router.push('/login');
+  }
+}
   }
 };
 </script>
