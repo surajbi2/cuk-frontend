@@ -1,16 +1,24 @@
 <template >
   <nav class="bg-[#880d1e] text-white text-center py-2 rounded-3xl mt-1 relative mx-1">
-    <div class="flex justify-between items-center px-4">
-      <div class="text-xl font-bold md:hidden">Menu</div>
-      <div class="md:hidden">
-        <button @click="toggleMenu" class="focus:outline-none">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-          </svg>
-        </button>
-      </div>
+    <!-- Mobile Menu Header -->
+    <div class="flex justify-between items-center px-4 md:hidden">
+      <div class="text-xl font-bold">Menu</div>
+      <button @click="toggleMenu" class="focus:outline-none p-2"
+      aria-label="Toggle Menu" v-if="!isMenuOpen">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+      </button>
+      <button @click="toggleMenu" 
+              class="absolute top-2 right-2 md:hidden focus:outline-none p-2 px-5" 
+              v-if="isMenuOpen">
+        <span class="text-xl font-bold">X</span>
+      </button>
     </div>
-    <ul :class="{'hidden': !isMenuOpen, 'flex': isMenuOpen}" class="flex-col md:flex-row md:flex justify-evenly mt-2 md:mt-0">
+
+    <!-- Navigation Items -->
+    <ul :class="{'hidden': !isMenuOpen, 'flex': isMenuOpen}" 
+        class="flex-col md:flex-row md:flex justify-evenly mt-2 md:mt-0 md:items-center">
       <!-- Home -->
       <li class="relative group">
         <router-link to="/"
@@ -187,14 +195,8 @@
             </a>
           </li>
           <li>
-            <a href="#"
-              class="block relative hover:text-white no-underline px-4 py-1 hover:before:scale-x-50 before:scale-x-0 before:origin-left before:content-[''] before:absolute before:bottom-0 before:left-5 before:right-0 before:h-0.5 before:bg-white before:transition-transform before:duration-300 before:ease-linear">
-              Evaluative Reports of the Departments
-            </a>
-          </li>
-          <li>
             <a href="https://cuk.ac.in/CUK-IQAC/pdf/1st%20Cycle%20NAAC%20Certificate.pdf"
-              class="block relative hover:text-white no-underline px-4 py-1 hover:before:scale-x-50 before:scale-x-0 before:origin-left before:content-[''] before:absolute before:bottom-0 before:left-5 before:right-0 before:h-0.5 before:bg-white before:transition-transform before:duration-300 before:ease-linear" target="_blank">
+              class="block relative hover:text-white no-underline px-4 py-1 hover:before:scale-x-75 before:scale-x-0 before:origin-left before:content-[''] before:absolute before:bottom-0 before:left-5 before:right-0 before:h-0.5 before:bg-white before:transition-transform before:duration-300 before:ease-linear" target="_blank">
               1st Cycle NAAC Certificate
             </a>
           </li>
@@ -263,11 +265,52 @@ export default {
 <style scoped>
 /* Responsive Design */
 @media (max-width: 768px) {
-  ul {
-    display: none;
+  nav {
+    padding: 0.5rem 0;
   }
+
+  ul {
+    padding: 1rem 0;
+  }
+
+  li {
+    padding: 0.5rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  li:last-child {
+    border-bottom: none;
+  }
+
+  .group:hover ul {
+    position: static;
+    box-shadow: none;
+    margin-top: 0.5rem;
+    margin-left: 1rem;
+  }
+
+  .group ul li {
+    padding: 0.5rem 0;
+  }
+
   ul.flex {
     display: flex;
+    flex-direction: column;
+  }
+}
+
+/* Desktop Styles */
+@media (min-width: 769px) {
+  li {
+    position: relative;
+  }
+
+  .group:hover ul {
+    display: flex;
+    position: absolute;
+    top: 100%;
+    left: 0;
   }
 }
 </style>

@@ -97,7 +97,7 @@ export default {
   methods: {
     checkAuth() {
   const token = sessionStorage.getItem('userToken');
-  this.isLoggedIn = !!token; // Ensure it's only true if a valid token exists
+  this.isLoggedIn = !!token;
 },    
 handleAuth() {
   if (this.isLoggedIn) {
@@ -107,8 +107,8 @@ handleAuth() {
     this.$router.push('/');
   } else {
     // Redirect to login page
-    this.isLoggedIn = true;
     this.$router.push('/login');
+    this.isLoggedIn = true;
   }
 }
   }
