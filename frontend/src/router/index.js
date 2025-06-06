@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Welcome from '../components/Welcome.vue';
 import Login from '../components/Login.vue';
 import Upload from '../components/Upload.vue';
-// import Dashboard from '../components/Dashboard.vue';
+import AdminDashboard from '../components/AdminDashboard.vue';
 import Notices from '../components/Notices.vue';
 import AboutUs from '../views/AboutUs.vue';
 import ContactUs from '../views/ContactUs.vue';
@@ -15,6 +15,7 @@ import MomReports from '../components/MomReports.vue';
 const routes = [
     { path: '/', name: 'Welcome', component: Welcome },
     { path: '/login', name: 'Login', component: Login },
+    { path: '/admin-dashboard', name: 'AdminDashboard', component: AdminDashboard, meta: { requiresAuth: true } },
     { path: '/upload', name: 'Upload', component: Upload, meta: { requiresAuth: true } },
     // { path: '/dashboard', name: 'Dashboard', component: Dashboard, meta: { requiresAuth: true } },
     { path: '/notices', name: 'Notices', component: Notices },

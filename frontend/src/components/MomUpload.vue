@@ -1,97 +1,55 @@
-<template>
-  <div class="md:m-10 rounded-xl flex items-center justify-center p-5 md:p-8">
-    <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 w-full max-w-xl">
-      <!-- Header -->
-      <div class="flex flex-col items-center mb-8 space-y-2">
-        <svg class="w-10 h-10 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-        </svg>
-        <h2 class="text-2xl font-semibold text-gray-900">Upload Meeting Report</h2>
-      </div>
-
-      <form @submit.prevent="uploadMoM" class="space-y-6">
-        <!-- Title Input -->
-        <div class="space-y-1">
-          <div class="flex items-center gap-3 px-4 py-2 border border-gray-200 rounded-lg focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500">
-            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-            </svg>
-            <input
-              v-model="title"
-              placeholder="Report title"
-              class="w-full bg-transparent focus:outline-none"
-              required
-            />
-          </div>
+<template>  <div class="sm:m-10 m-4 rounded-lg bg-gray-100 flex items-center justify-center p-4 sm:p-8 md:p-14 drop-shadow-xl">
+    <div class="bg-white p-4 sm:p-6 md:p-8 rounded-lg shadow-lg w-full max-w-lg drop-shadow-xl">
+      <h2 class="text-xl sm:text-2xl font-semibold text-center text-gray-800 mb-4 sm:mb-6">Upload Meeting Report</h2>
+      
+      <form @submit.prevent="uploadMoM" class="space-y-3 sm:space-y-4">
+        <div>
+          <input
+            v-model="title"
+            placeholder="Report Title"
+            class="w-full px-3 py-2 text-sm sm:text-base border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+            required
+          />
         </div>
 
-        <!-- Date Input -->
-        <div class="space-y-1">
-          <div class="flex items-center gap-3 px-4 py-2 border border-gray-200 rounded-lg focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500">
-            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-            </svg>
-            <input
-              v-model="date"
-              type="date"
-              class="w-full bg-transparent focus:outline-none"
-              required
-            />
-          </div>
+        <div>
+          <input
+            v-model="date"
+            type="date"
+            class="w-full px-3 py-2 text-sm sm:text-base border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+            required
+          />
         </div>
 
-        <!-- File Input -->
-        <div class="space-y-1">
-          <label class="flex flex-col items-center w-full px-4 py-6 border-2 border-dashed border-gray-200 rounded-lg hover:border-indigo-400 transition-colors cursor-pointer">
-            <input
-              type="file"
-              @change="handleFile"
-              class="hidden"
-              required
-            />
-            <svg class="w-8 h-8 text-gray-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
-            </svg>
-            <span class="text-sm text-gray-600">
-              {{ file ? file.name : 'Choose file...' }}
-            </span>
-          </label>
+        <div>
+          <input
+            type="file"
+            @change="handleFile"
+            class="w-full px-3 py-2 text-sm sm:text-base border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+            required
+          />
         </div>
-
-        <!-- Submit Button -->
-        <div class="pt-4">
-          <button 
-            type="submit" 
-            class="w-full flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-indigo-500 text-white rounded-lg font-medium hover:from-indigo-700 hover:to-indigo-600 transition-all shadow-sm hover:shadow-md"
+        
+        <div class="flex justify-center mt-4 sm:mt-6">
+          <button
+            type="submit"
+            class="buttonDownload"
             v-if="isAdmin"
           >
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
-            </svg>
-            Upload Report
-          </button>
+            Upload Report          </button>
           
-          <div v-else class="p-3 text-center text-red-600 bg-red-50 rounded-lg flex items-center justify-center gap-2">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
-            </svg>
-            <span>Admin access required</span>
+          <div v-else class="text-red-500 text-sm mt-3 sm:mt-4 text-center">
+            Admin access required
           </div>
         </div>
-
-        <!-- Error Message -->
-        <p v-if="errorMessage" class="text-sm text-center text-red-600 flex items-center justify-center gap-2">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
-          </svg>
-          {{ errorMessage }}
-        </p>
       </form>
+
+      <p v-if="errorMessage" class="text-red-500 text-sm mt-3 sm:mt-4">{{ errorMessage }}</p>
     </div>
   </div>
 </template>
-  
-  <script>
+
+<script>
   import { API_PATH } from '../path/apiPath';
   import axios from 'axios';
   import { RouterLink } from 'vue-router';
@@ -157,19 +115,117 @@
   </script>
   
   <style scoped>
-/* Smooth transitions */
-button, label, input {
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+.buttonDownload {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 24px;
+  font-size: 0.875rem;
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  color: white;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.1), 0 2px 4px -1px rgba(79, 70, 229, 0.06);
+  position: relative;
+  overflow: hidden;
+  gap: 6px;
 }
 
-/* Custom date input arrow */
-input[type="date"]::-webkit-calendar-picker-indicator {
-  filter: invert(0.5);
+@media (min-width: 640px) {
+  .buttonDownload {
+    padding: 12px 32px;
+    font-size: 1rem;
+    border-radius: 12px;
+    gap: 8px;
+  }
 }
 
-/* File input hover state */
-label:hover {
+.buttonDownload:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.1), 0 4px 6px -2px rgba(79, 70, 229, 0.05);
+  background: linear-gradient(135deg, #818cf8 0%, #6366f1 100%);
+}
+
+.buttonDownload:active {
+  transform: translateY(1px);
+  scale: 0.98;
+}
+
+.buttonDownload::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.buttonDownload:hover::before {
+  opacity: 1;
+}
+
+.buttonDownload::after {
+  content: '↑';
+  font-size: 1.2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.buttonDownload:hover::after {
+  transform: translateY(-2px);
+}
+
+/* Form input enhancements */
+input[type="text"], 
+input[type="date"], 
+input[type="file"] {
+  transition: all 0.3s ease;
+  border: 2px solid #e5e7eb;
+}
+
+input[type="text"]:focus, 
+input[type="date"]:focus, 
+input[type="file"]:focus {
   border-color: #6366f1;
-  background-color: rgba(238, 242, 255, 0.3);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+input[type="file"]::-webkit-file-upload-button {
+  background: #f3f4f6;
+  border: 2px solid #e5e7eb;
+  padding: 6px 12px;
+  font-size: 0.875rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+@media (min-width: 640px) {
+  input[type="file"]::-webkit-file-upload-button {
+    padding: 8px 16px;
+    font-size: 1rem;
+    border-radius: 8px;
+  }
+}
+
+input[type="file"]::-webkit-file-upload-button:hover {
+  background: #e5e7eb;
+}
+
+/* Mobile optimizations */
+@media (max-width: 480px) {
+  .buttonDownload::after {
+    font-size: 1em;
+  }
+  
+  input[type="file"] {
+    font-size: 0.75rem;
+  }
 }
 </style>
