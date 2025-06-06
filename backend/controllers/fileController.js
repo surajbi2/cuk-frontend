@@ -131,36 +131,39 @@ export const serveFile = async (req, res) => {
 export const downloadFile = async (req, res) => {
     try {
         const { id } = req.params;
-        const [rows] = await db.query(
-            'SELECT file_name, file_mimetype, file_path FROM notices WHERE id = ?', 
+          // Get file info from database
+        const [files] = await db.query(
+            'SELECT file_name, file_path, file_mimetype, title FROM notices WHERE id = ? AND status = 1',
             [id]
         );
 
-        if (rows.length === 0) {
+        if (files.length === 0) {
             return res.status(404).json({ message: 'File not found' });
         }
 
-        const file = rows[0];
-        const filePath = path.join(__dirname, '..', file.file_path);
+        const file = files[0];
+        const absolutePath = path.resolve(__dirname, '..', file.file_path);
 
-        if (!fs.existsSync(filePath)) {
-            console.error(`File not found: ${filePath}`);
+        // Check if file exists
+        if (!fs.existsSync(absolutePath)) {
             return res.status(404).json({ message: 'File not found on server' });
         }
 
-        // Set headers for download
-        res.setHeader('Content-Disposition', `attachment; filename="${file.file_name}"`);
+        // Get file extension from original filename
+        const fileExt = path.extname(file.file_name);
+        // Create sanitized filename using title
+        const safeTitle = file.title.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+        const downloadFilename = `${safeTitle}${fileExt}`;
+
+        // Set headers for file download
         res.setHeader('Content-Type', file.file_mimetype);
-        
-        // Send file as download
-        res.download(filePath, file.file_name, (err) => {
-            if (err) {
-                console.error('Download error:', err);
-                res.status(500).json({ message: 'Error downloading file' });
-            }
-        });
+        res.setHeader('Content-Disposition', `attachment; filename="${downloadFilename}"`);
+
+        // Stream the file
+        const fileStream = fs.createReadStream(absolutePath);
+        fileStream.pipe(res);
     } catch (err) {
-        console.error('Error retrieving file for download:', err);
+        console.error('Error downloading file:', err);
         res.status(500).json({ message: 'Server error while downloading file' });
     }
 };
