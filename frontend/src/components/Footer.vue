@@ -53,8 +53,14 @@
 
           <div @click="handleAuth" 
                class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 rounded-xl cursor-pointer transform transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-indigo-500/20">
-            <span v-if="isLoggedIn" class="text-sm font-medium">🚪 Logout</span>
-            <span v-else class="text-sm font-medium">🔒 Secure Login</span>
+            <span v-if="isLoggedIn" class="text-sm font-medium">
+              <div class="flex items-center gap-2">
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f7f7f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-out-icon lucide-log-out"><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/></svg>
+                Logout
+              </div>
+              </span>
+                <span v-else class="text-sm font-medium">🔒 Secure Login</span>
           </div>
         </div>
       </div>
