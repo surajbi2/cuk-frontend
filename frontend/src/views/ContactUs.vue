@@ -1,5 +1,5 @@
 <template>
-    <div class="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div class=" bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div class="max-w-2xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
 
         <div class="bg-gradient-to-r from-[#168aad] to-[#0081a7] p-6">

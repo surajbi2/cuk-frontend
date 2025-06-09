@@ -224,13 +224,6 @@
         </router-link>
       </li>
       
-      <!-- Gallery -->
-      <li class="relative group">
-        <router-link to="/Gallery"
-          class="relative hover:text-white no-underline px-4 py-1 hover:before:scale-x-50 before:scale-x-0 before:origin-center before:content-[''] before:absolute before:bottom-0 before:left-0 before:right-0 before:h-0.5 before:bg-white before:transition-transform before:duration-300 before:ease-linear">
-          Gallery
-        </router-link>
-      </li>
       <!-- Contact Us -->
       <li class="relative group">
         <router-link to="/contact-us"
