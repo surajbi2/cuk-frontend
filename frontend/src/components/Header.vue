@@ -2,7 +2,7 @@
   <header class="bg-[#fffaff] text-blue-950 text-center pt-1 flex flex-col md:flex-row items-center">
     <img src="/logo.png" alt="" class="sm:w-40 w-14 h-auto md:pl-10">
     <div class="px-10 flex flex-col justify-center items-center md:w-[80%]">
-      <p>ಕರ್ನಾಟಕ ಕೇಂದ್ರೀಯ ವಿಶ್ವವಿದ್ಯಾಲಯ | कर्नाटक केंद्रीय विश्‍वविद्यालय</p>
+      <p class="text-3xl font-bold">ಕರ್ನಾಟಕ ಕೇಂದ್ರೀಯ ವಿಶ್ವವಿದ್ಯಾಲಯ | कर्नाटक केंद्रीय विश्‍वविद्यालय</p>
       <div class="flex items-center justify-center md:px-16 flex-col">
         <h1 class="text-xl md:text-3xl font-bold px-5">Central University of Karnataka</h1>
         <p>(Established by an Act of Parliament in 2009)</p>

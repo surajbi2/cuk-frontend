@@ -1,5 +1,5 @@
 <template >
-  <nav class="bg-[#880d1e] text-white text-center py-2 rounded-3xl mt-1 relative mx-1">
+  <nav class="bg-[#880d1e] text-white text-center py-3 rounded-3xl mt-1 text-lg font-medium relative mx-1">
     <!-- Mobile Menu Header -->
     <div class="flex justify-between items-center px-4 md:hidden">
       <div class="text-xl font-bold">Menu</div>
@@ -21,14 +21,14 @@
         class="flex-col md:flex-row md:flex justify-evenly mt-2 md:mt-0 md:items-center">
       <!-- Home -->
       <li class="relative group">
-        <router-link to="/"
+        <router-link to="/" @click="closeMenu"
           class="relative hover:text-white no-underline px-4 py-1 hover:before:scale-x-50 before:scale-x-0 before:origin-center before:content-[''] before:absolute before:bottom-0 before:left-0 before:right-0 before:h-0.5 before:bg-white before:transition-transform before:duration-300 before:ease-linear">
           Home
         </router-link>
       </li>
 <!-- About Us -->
 <li class="relative group">
-        <router-link to="/about-us"
+        <router-link to="/about-us" @click="closeMenu"
           class="relative hover:text-white no-underline px-4 py-1 hover:before:scale-x-50 before:scale-x-0 before:origin-center before:content-[''] before:absolute before:bottom-0 before:left-0 before:right-0 before:h-0.5 before:bg-white before:transition-transform before:duration-300 before:ease-linear hover:cursor-pointer">
           About Us
         </router-link>
@@ -42,19 +42,19 @@
         <ul
           class="absolute hidden group-hover:flex flex-col bg-[#880d1e] rounded-lg shadow-lg py-2 mt-0 min-w-[15rem] text-left transition duration-300 ease-in-out z-10">
           <li>
-            <router-link to="/CommitteeMembers"
+            <router-link to="/CommitteeMembers" @click="closeMenu"
               class="block relative hover:text-white no-underline px-4 py-1 hover:before:scale-x-50 before:scale-x-0 before:origin-left before:content-[''] before:absolute before:bottom-0 before:left-5 before:right-0 before:h-0.5 before:bg-white before:transition-transform before:duration-300 before:ease-linear">
               IQAC Committee
             </router-link>
           </li>
           <li>
-            <router-link to="/mom-reports"
+            <router-link to="/mom-reports" @click="closeMenu"
               class="block relative hover:text-white no-underline px-4 py-1 hover:before:scale-x-75 before:scale-x-0 before:origin-left before:content-[''] before:absolute before:bottom-0 before:left-5 before:right-0 before:h-0.5 before:bg-white before:transition-transform before:duration-300 before:ease-linear">
               Minutes of Meeting & Action Taken Report
             </router-link>
           </li>
           <li>
-            <a href="https://cuk.ac.in/CUK-IQAC/pdf/IQAC%20Calendar%202024-25.pdf"
+            <a href="https://cuk.ac.in/CUK-IQAC/pdf/IQAC%20Calendar%202024-25.pdf" @click="closeMenu"
               class="block relative hover:text-white no-underline px-4 py-1 hover:before:scale-x-50 before:scale-x-0 before:origin-left before:content-[''] before:absolute before:bottom-0 before:left-5 before:right-0 before:h-0.5 before:bg-white before:transition-transform before:duration-300 before:ease-linear" target="_blank">
               IQAC - Academic Calendar
             </a>
@@ -71,43 +71,43 @@
         <ul
           class="absolute hidden group-hover:flex flex-col bg-[#880d1e] rounded-lg shadow-lg py-2 mt-0 min-w-[10rem] text-left transition duration-300 ease-in-out z-10">
           <li>
-            <a href="https://www.cuk.ac.in/NAAC2022/AQAR/AQAR%202022-2023.pdf"
+            <a href="https://www.cuk.ac.in/NAAC2022/AQAR/AQAR%202022-2023.pdf" @click="closeMenu"
               class="block relative hover:text-white no-underline px-4 py-1 hover:before:scale-x-75 before:scale-x-0 before:origin-left before:content-[''] before:absolute before:bottom-0 before:left-5 before:right-0 before:h-0.5 before:bg-white before:transition-transform before:duration-300 before:ease-linear" target="_blank">
               AQAR 2022-2023
             </a>
           </li>
           <li>
-            <a href="https://www.cuk.ac.in/NAAC2022/AQAR/2021-2022.pdf"
+            <a href="https://www.cuk.ac.in/NAAC2022/AQAR/2021-2022.pdf" @click="closeMenu"
               class="block relative hover:text-white no-underline px-4 py-1 hover:before:scale-x-75 before:scale-x-0 before:origin-left before:content-[''] before:absolute before:bottom-0 before:left-5 before:right-0 before:h-0.5 before:bg-white before:transition-transform before:duration-300 before:ease-linear" target="_blank">
               AQAR 2021-2022
             </a>
           </li>
           <li>
-            <a href="https://www.cuk.ac.in/NAAC2022/AQAR/2020-21.pdf"
+            <a href="https://www.cuk.ac.in/NAAC2022/AQAR/2020-21.pdf" @click="closeMenu"
               class="block relative hover:text-white no-underline px-4 py-1 hover:before:scale-x-75 before:scale-x-0 before:origin-left before:content-[''] before:absolute before:bottom-0 before:left-5 before:right-0 before:h-0.5 before:bg-white before:transition-transform before:duration-300 before:ease-linear" target="_blank">
               AQAR 2020-2021
             </a>
           </li>
           <li>
-            <a href="https://www.cuk.ac.in/NAAC2022/AQAR/2019-20.pdf"
+            <a href="https://www.cuk.ac.in/NAAC2022/AQAR/2019-20.pdf" @click="closeMenu"
               class="block relative hover:text-white no-underline px-4 py-1 hover:before:scale-x-75 before:scale-x-0 before:origin-left before:content-[''] before:absolute before:bottom-0 before:left-5 before:right-0 before:h-0.5 before:bg-white before:transition-transform before:duration-300 before:ease-linear" target="_blank">
               AQAR 2019-2020
             </a>
           </li>
           <li>
-            <a href="https://www.cuk.ac.in/NAAC2022/AQAR/2018-19.pdf"
+            <a href="https://www.cuk.ac.in/NAAC2022/AQAR/2018-19.pdf" @click="closeMenu"
               class="block relative hover:text-white no-underline px-4 py-1 hover:before:scale-x-75 before:scale-x-0 before:origin-left before:content-[''] before:absolute before:bottom-0 before:left-5 before:right-0 before:h-0.5 before:bg-white before:transition-transform before:duration-300 before:ease-linear" target="_blank">
               AQAR 2018-2019
             </a>
           </li>
           <li>
-            <a href="https://www.cuk.ac.in/NAAC2022/AQAR/2017-18.pdf"
+            <a href="https://www.cuk.ac.in/NAAC2022/AQAR/2017-18.pdf" @click="closeMenu"
               class="block relative hover:text-white no-underline px-4 py-1 hover:before:scale-x-75 before:scale-x-0 before:origin-left before:content-[''] before:absolute before:bottom-0 before:left-5 before:right-0 before:h-0.5 before:bg-white before:transition-transform before:duration-300 before:ease-linear" target="_blank">
               AQAR 2017-2018
             </a>
           </li>
           <li>
-            <a href="https://www.cuk.ac.in/NAAC2022/AQAR/2017-18.pdf"
+            <a href="https://www.cuk.ac.in/NAAC2022/AQAR/2017-18.pdf" @click="closeMenu"
               class="block relative hover:text-white no-underline px-4 py-1 hover:before:scale-x-75 before:scale-x-0 before:origin-left before:content-[''] before:absolute before:bottom-0 before:left-5 before:right-0 before:h-0.5 before:bg-white before:transition-transform before:duration-300 before:ease-linear" target="_blank">
               AQAR 2016-2017
             </a>
@@ -124,49 +124,49 @@
         <ul
           class="absolute hidden group-hover:flex flex-col bg-[#880d1e] rounded-lg shadow-lg py-2 mt-0 min-w-[15rem] text-left transition duration-300 ease-in-out z-10">
           <li>
-            <a href="https://ssr2024.cuk.ac.in/ipms/index.html"
+            <a href="https://ssr2024.cuk.ac.in/ipms/index.html" @click="closeMenu"
               class="block relative hover:text-white no-underline px-4 py-1 hover:before:scale-x-[0.4] before:scale-x-0 before:origin-left before:content-[''] before:absolute before:bottom-0 before:left-5 before:right-0 before:h-0.5 before:bg-white before:transition-transform before:duration-300 before:ease-linear" target="_blank">
               SSR - 2024
             </a>
           </li>
           <li>
-            <a href="https://cuk.ac.in/CUK-IQAC/studentsaf.php"
+            <a href="https://cuk.ac.in/CUK-IQAC/studentsaf.php" @click="closeMenu"
               class="block relative hover:text-white no-underline px-4 py-1 hover:before:scale-x-75 before:scale-x-0 before:origin-left before:content-[''] before:absolute before:bottom-0 before:left-5 before:right-0 before:h-0.5 before:bg-white before:transition-transform before:duration-300 before:ease-linear" target="_blank">
               Student Satisfaction Survey
             </a>
           </li>
           <li>
-            <a href="https://cuk.ac.in/CUK-IQAC/pdf/Teachers%20Satisfaction%20Survey.pdf"
+            <a href="https://cuk.ac.in/CUK-IQAC/pdf/Teachers%20Satisfaction%20Survey.pdf" @click="closeMenu"
               class="block relative hover:text-white no-underline px-4 py-1 hover:before:scale-x-75 before:scale-x-0 before:origin-left before:content-[''] before:absolute before:bottom-0 before:left-5 before:right-0 before:h-0.5 before:bg-white before:transition-transform before:duration-300 before:ease-linear"  target="_blank">
               Teachers Satisfaction Survey(2023-2024)
             </a>
           </li>
           <li>
-            <a href="https://cuk.ac.in/CUK-IQAC/pdf/Employer%20Feedback%202032-24.pdf"
+            <a href="https://cuk.ac.in/CUK-IQAC/pdf/Employer%20Feedback%202032-24.pdf" @click="closeMenu"
               class="block relative hover:text-white no-underline px-4 py-1 hover:before:scale-x-75 before:scale-x-0 before:origin-left before:content-[''] before:absolute before:bottom-0 before:left-5 before:right-0 before:h-0.5 before:bg-white before:transition-transform before:duration-300 before:ease-linear" target="_blank">
               Employer Feedback(2032-24)
             </a>
           </li>
           <li>
-            <a href="https://cuk.ac.in/CUK-IQAC/pdf/Non-Teaching%20Diversity%20Survey.pdf"
+            <a href="https://cuk.ac.in/CUK-IQAC/pdf/Non-Teaching%20Diversity%20Survey.pdf" @click="closeMenu"
               class="block relative hover:text-white no-underline px-4 py-1 hover:before:scale-x-75 before:scale-x-0 before:origin-left before:content-[''] before:absolute before:bottom-0 before:left-5 before:right-0 before:h-0.5 before:bg-white before:transition-transform before:duration-300 before:ease-linear" target="_blank">
               Non-Teaching Staff Diversity Survey
             </a>
           </li>
           <li>
-            <a href="https://cuk.ac.in/CUK-IQAC/pdf/Non-Teaching%20Feedback%20Form%20Analysis%20Pie%20Chart.pdf"
+            <a href="https://cuk.ac.in/CUK-IQAC/pdf/Non-Teaching%20Feedback%20Form%20Analysis%20Pie%20Chart.pdf" @click="closeMenu"
               class="block relative hover:text-white no-underline px-4 py-1 hover:before:scale-x-75 before:scale-x-0 before:origin-left before:content-[''] before:absolute before:bottom-0 before:left-5 before:right-0 before:h-0.5 before:bg-white before:transition-transform before:duration-300 before:ease-linear" target="_blank">
               Non-Teaching Feedback(2023-2024) 
             </a>
           </li>
           <li>
-            <a href="https://cuk.ac.in/CUK-IQAC/pdf/Alumni%20Feedback-2025.pdf"
+            <a href="https://cuk.ac.in/CUK-IQAC/pdf/Alumni%20Feedback-2025.pdf" @click="closeMenu"
               class="block relative hover:text-white no-underline px-4 py-1 hover:before:scale-x-75 before:scale-x-0 before:origin-left before:content-[''] before:absolute before:bottom-0 before:left-5 before:right-0 before:h-0.5 before:bg-white before:transition-transform before:duration-300 before:ease-linear" target="_blank">
               Alumni Feedback(2023-2024)
             </a>
           </li>
           <li>
-            <a href="https://cuk.ac.in/CUK-IQAC/Policies.php"
+            <a href="https://cuk.ac.in/CUK-IQAC/Policies.php" @click="closeMenu"
               class="block relative hover:text-white no-underline px-4 py-1 hover:before:scale-x-[0.2] before:scale-x-0 before:origin-left before:content-[''] before:absolute before:bottom-0 before:left-5 before:right-0 before:h-0.5 before:bg-white before:transition-transform before:duration-300 before:ease-linear" target="_blank">
               Policies
             </a>
@@ -183,25 +183,25 @@
         <ul
           class="absolute hidden group-hover:flex flex-col bg-[#880d1e] rounded-lg shadow-lg py-2 mt-0 min-w-[16rem] text-left transition duration-300 ease-in-out z-10">
           <li>
-            <a href="https://cuk.ac.in/CUK-IQAC/pdf/IIQA%202024.pdf"
+            <a href="https://cuk.ac.in/CUK-IQAC/pdf/IIQA%202024.pdf" @click="closeMenu"
               class="block relative hover:text-white no-underline px-4 py-1 hover:before:scale-x-[0.1] before:scale-x-0 before:origin-left before:content-[''] before:absolute before:bottom-0 before:left-5 before:right-0 before:h-0.5 before:bg-white before:transition-transform before:duration-300 before:ease-linear" target="_blank">
               IIQA
             </a>
           </li>
           <li>
-            <a href="https://cuk.ac.in/CUK-IQAC/pdf/Self%20Study%20Reports.pdf"
+            <a href="https://cuk.ac.in/CUK-IQAC/pdf/Self%20Study%20Reports.pdf" @click="closeMenu"
               class="block relative hover:text-white no-underline px-4 py-1 hover:before:scale-x-50 before:scale-x-0 before:origin-left before:content-[''] before:absolute before:bottom-0 before:left-5 before:right-0 before:h-0.5 before:bg-white before:transition-transform before:duration-300 before:ease-linear" target="_blank">
               Self Study Reports
             </a>
           </li>
           <li>
-            <a href="https://cuk.ac.in/CUK-IQAC/pdf/1st%20Cycle%20NAAC%20Certificate.pdf"
+            <a href="https://cuk.ac.in/CUK-IQAC/pdf/1st%20Cycle%20NAAC%20Certificate.pdf" @click="closeMenu"
               class="block relative hover:text-white no-underline px-4 py-1 hover:before:scale-x-75 before:scale-x-0 before:origin-left before:content-[''] before:absolute before:bottom-0 before:left-5 before:right-0 before:h-0.5 before:bg-white before:transition-transform before:duration-300 before:ease-linear" target="_blank">
               1st Cycle NAAC Certificate
             </a>
           </li>
           <li>
-            <a href="https://cuk.ac.in/CUK-IQAC/AISHE.php"
+            <a href="https://cuk.ac.in/CUK-IQAC/AISHE.php" @click="closeMenu"
               class="block relative hover:text-white no-underline px-4 py-1 hover:before:scale-x-50 before:scale-x-0 before:origin-left before:content-[''] before:absolute before:bottom-0 before:left-5 before:right-0 before:h-0.5 before:bg-white before:transition-transform before:duration-300 before:ease-linear" target="_blank">
               AISHE Certificates
             </a>
@@ -211,14 +211,14 @@
 
       <!-- Circular/Notice -->
       <li class="relative group">
-        <router-link to="/notices"
+        <router-link to="/notices" @click="closeMenu"
           class="relative hover:text-white no-underline px-4 py-1 hover:before:scale-x-50 before:scale-x-0 before:origin-center before:content-[''] before:absolute before:bottom-0 before:left-0 before:right-0 before:h-0.5 before:bg-white before:transition-transform before:duration-300 before:ease-linear">
           Circular/Notice
         </router-link>
       </li>
       
       <li class="relative group">
-        <router-link to="/Nirf"
+        <router-link to="/Nirf" @click="closeMenu"
           class="relative hover:text-white no-underline px-4 py-1 hover:before:scale-x-50 before:scale-x-0 before:origin-center before:content-[''] before:absolute before:bottom-0 before:left-0 before:right-0 before:h-0.5 before:bg-white before:transition-transform before:duration-300 before:ease-linear">
           NIRF
         </router-link>
@@ -226,7 +226,7 @@
       
       <!-- Contact Us -->
       <li class="relative group">
-        <router-link to="/contact-us"
+        <router-link to="/contact-us" @click="closeMenu"
           class="relative hover:text-white no-underline px-4 py-1 hover:before:scale-x-50 before:scale-x-0 before:origin-center before:content-[''] before:absolute before:bottom-0 before:left-0 before:right-0 before:h-0.5 before:bg-white before:transition-transform before:duration-300 before:ease-linear">
           Contact Us
         </router-link>
@@ -250,6 +250,9 @@ export default {
   methods: {
     toggleMenu() {
       this.isMenuOpen = !this.isMenuOpen;
+    },
+    closeMenu() {
+      this.isMenuOpen = false;
     },
   },
 };
