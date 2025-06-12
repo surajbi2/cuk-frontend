@@ -54,10 +54,11 @@
     </div>
     
     <!-- Reports Grid -->
-    <div class="grid-container">
-      <a v-for="(item, index) in surveys" 
+    <div class="grid-container">  
+    <a v-for="(item, index) in surveys" 
          :key="index"
          :href="item.link" 
+         @click.prevent="handleDownload(item)"
          target="_blank"
          class="report-card"
          :style="`--hue: ${index * 40}`">
@@ -161,6 +162,19 @@ export default {
         this.surveys = response.data;
       } catch (error) {
         console.error('Error fetching surveys:', error);
+      }
+    },    handleDownload(survey) {
+      try {
+        // Verify that the link exists
+        if (!survey.link) {
+          throw new Error('Survey link is missing');
+        }
+
+        // For external links (starting with http/https) or local links
+        window.open(survey.link, '_blank');
+      } catch (error) {
+        console.error('Error opening file:', error);
+        alert('Failed to open the survey report. Please try again.');
       }
     }
   },
