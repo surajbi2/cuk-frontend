@@ -6,12 +6,12 @@ import { uploadSurvey, getAllSurveys, downloadSurvey } from '../controllers/surv
 const router = express.Router();
 
 // Get all surveys
-router.get('/', getAllSurveys);
+router.get('/surveys', getAllSurveys);
 
 // Upload new survey (admin only)
-router.post('/upload', authenticateToken, upload.single('file'), uploadSurvey);
+router.post('/surveys/upload', authenticateToken, upload.single('file'), uploadSurvey);
 
 // Download survey
-router.get('/download/:id', downloadSurvey);
+router.get('/surveys/download/:id', downloadSurvey);
 
 export default router;
