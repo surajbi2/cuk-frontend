@@ -36,6 +36,7 @@ export const uploadSurvey = async (req, res) => {
         }
 
         // Insert survey record into database with pending status (2)
+        console.log('Inserting survey into database:', { title, year, relativePath, mimetype: req.file.mimetype });
         const [result] = await db.query(
             'INSERT INTO surveys (title, year, file_path, upload_date, file_mimetype, status) VALUES (?, ?, ?, NOW(), ?, 2)',
             [title, year, relativePath, req.file.mimetype]
@@ -48,7 +49,7 @@ export const uploadSurvey = async (req, res) => {
 
     } catch (error) {
         console.error('Error uploading survey:', error);
-        res.status(500).json({ message: 'Error uploading survey' });
+        res.status(500).json({ message: 'Error uploading survey: ' + error.message });
     }
 };
 
@@ -58,14 +59,15 @@ export const getAllSurveys = async (req, res) => {
         const [surveys] = await db.query(
             'SELECT id, title, year, file_path, file_mimetype, upload_date FROM surveys WHERE status = 1 ORDER BY year DESC'
         );
-        
+        console.log('Found surveys:', surveys);
+
         const formattedSurveys = surveys.map(survey => ({
             id: survey.id,
             type: 'SSS',
             year: survey.year,
             description: survey.title,
-            link: `/api/surveys/file/${survey.id}`, // Updated to use file serving endpoint
-            downloadLink: `/api/surveys/download/${survey.id}`, // Explicit download endpoint
+            link: `/api/surveys/file/${survey.id}`,
+            downloadLink: `/api/surveys/download/${survey.id}`,
             uploadDate: survey.upload_date
         }));
 
@@ -74,7 +76,7 @@ export const getAllSurveys = async (req, res) => {
 
     } catch (error) {
         console.error('Error fetching surveys:', error);
-        res.status(500).json({ message: 'Error fetching surveys' });
+        res.status(500).json({ message: 'Error fetching surveys: ' + error.message });
     }
 };
 
