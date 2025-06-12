@@ -129,11 +129,10 @@
               SSR - 2024
             </a>
           </li>
-          <li>
-            <a href="https://cuk.ac.in/CUK-IQAC/studentsaf.php" @click="closeMenu"
-              class="block relative hover:text-white no-underline px-4 py-1 hover:before:scale-x-75 before:scale-x-0 before:origin-left before:content-[''] before:absolute before:bottom-0 before:left-5 before:right-0 before:h-0.5 before:bg-white before:transition-transform before:duration-300 before:ease-linear" target="_blank">
+          <li>            <router-link to="/student-survey" @click="closeMenu"
+              class="block relative hover:text-white no-underline px-4 py-1 hover:before:scale-x-75 before:scale-x-0 before:origin-left before:content-[''] before:absolute before:bottom-0 before:left-5 before:right-0 before:h-0.5 before:bg-white before:transition-transform before:duration-300 before:ease-linear">
               Student Satisfaction Survey
-            </a>
+            </router-link>
           </li>
           <li>
             <a href="https://cuk.ac.in/CUK-IQAC/pdf/Teachers%20Satisfaction%20Survey.pdf" @click="closeMenu"

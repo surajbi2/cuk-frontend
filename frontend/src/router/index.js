@@ -7,6 +7,7 @@ import Notices from '../components/Notices.vue';
 import AboutUs from '../views/AboutUs.vue';
 import ContactUs from '../views/ContactUs.vue';
 import Nirf from '../views/Nirf.vue';
+import StudentSurvey from '../views/StudentSurvey.vue';
 import CommitteeMembers from '../views/Committee-members.vue';
 import Gallery from '../views/Gallery.vue';
 import MomUpload from '../components/MomUpload.vue';
@@ -23,6 +24,7 @@ const routes = [
     { path: '/contact-us', name: 'ContactUs', component: ContactUs },
     { path: '/notices', name: 'Notices', component: Notices },
     { path: '/Nirf', name: 'Nirf', component: Nirf },
+    { path: '/student-survey', name: 'StudentSurvey', component: StudentSurvey },
     { path: '/CommitteeMembers', name: 'CommitteeMembers', component: CommitteeMembers },
     { path: '/Gallery', name: 'Gallery', component: Gallery },
     { path: '/m-o-m', name: 'minutes-of-meeting', component: MomUpload, meta: { requiresAuth: true } },
