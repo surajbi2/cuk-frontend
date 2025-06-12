@@ -73,7 +73,7 @@ app.get('/api/mom/download/:id', async (req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/files', fileRoutes);
 app.use('/api/mom', momMeetingRoutes);
-app.use('/api', surveyRoutes); // Add survey routes
+app.use('/api/surveys', surveyRoutes); // Mount survey routes at /api/surveys
 
 // Error handling middleware
 app.use((err, req, res, next) => {
