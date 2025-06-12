@@ -5,6 +5,7 @@ import authRoutes from './routes/authRoutes.js';
 import fileRoutes from './routes/fileRoutes.js';
 import momMeetingRoutes from './routes/momMeetingRoutes.js';
 import surveyRoutes from './routes/surveyRoutes.js';
+import debugRoutes from './routes/debugRoutes.js';
 import mysql from 'mysql2/promise';
 import path from 'path';
 import fs from 'fs';
@@ -73,6 +74,7 @@ app.get('/api/mom/download/:id', async (req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/files', fileRoutes);
 app.use('/api/mom', momMeetingRoutes);
+app.use('/api/debug', debugRoutes);
 // Debug middleware to log all incoming requests
 app.use((req, res, next) => {
   console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
