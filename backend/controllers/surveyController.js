@@ -4,8 +4,15 @@ import fs from 'fs';
 
 export const uploadSurvey = async (req, res) => {
     try {
+        console.log('uploadSurvey called with:', {
+            body: req.body,
+            file: req.file,
+            user: req.user
+        });
+
         // Check if user is admin
         if (req.user.role !== 'admin') {
+            console.log('Access denied: User is not admin');
             return res.status(403).json({ message: 'Admin access required' });
         }
 
