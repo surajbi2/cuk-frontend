@@ -137,7 +137,7 @@ export default {
         formData.append('title', this.uploadForm.title);
         formData.append('year', this.uploadForm.year);
         
-        await axios.post(`${API_PATH}/api/surveys/upload`, formData, {
+        await axios.post(`${API_PATH}/api/upload`, formData, {
           headers: { 
             Authorization: sessionStorage.getItem('userToken'),
             'Content-Type': 'multipart/form-data'
@@ -158,7 +158,7 @@ export default {
     },
     async fetchSurveys() {
       try {
-        const response = await axios.get(`${API_PATH}/api/surveys`);
+        const response = await axios.get(`${API_PATH}/api`);
         this.surveys = response.data;
       } catch (error) {
         console.error('Error fetching surveys:', error);
