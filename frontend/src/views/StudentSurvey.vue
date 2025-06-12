@@ -118,13 +118,19 @@ export default {
       try {
         const token = sessionStorage.getItem('userToken');
         if (token) {
+          console.log('Checking admin status with token:', token);
           const response = await axios.get(`${API_PATH}/api/auth/check-admin`, {
             headers: { Authorization: token }
           });
+          console.log('Admin check response:', response.data);
           this.isAdmin = response.data.isAdmin;
+        } else {
+          console.log('No token found in session storage');
+          this.isAdmin = false;
         }
       } catch (error) {
-        console.error('Error checking admin status:', error);
+        console.error('Error checking admin status:', error.response || error);
+        this.isAdmin = false;
       }
     },
     handleFileChange(event) {
@@ -136,8 +142,13 @@ export default {
         formData.append('file', this.uploadForm.file);
         formData.append('title', this.uploadForm.title);
         formData.append('year', this.uploadForm.year);
-        
-        await axios.post(`${API_PATH}/api/upload`, formData, {
+          console.log('Uploading survey with data:', {
+            title: this.uploadForm.title,
+            year: this.uploadForm.year,
+            fileSize: this.uploadForm.file?.size
+        });
+
+        await axios.post(`${API_PATH}/api/surveys/upload`, formData, {
           headers: { 
             Authorization: sessionStorage.getItem('userToken'),
             'Content-Type': 'multipart/form-data'
@@ -155,23 +166,26 @@ export default {
         console.error('Upload error:', error);
         alert('Failed to upload survey report. Please try again.');
       }
-    },
-    async fetchSurveys() {
+    },    async fetchSurveys() {
       try {
-        const response = await axios.get(`${API_PATH}/api`);
-        this.surveys = response.data;
+        console.log('Fetching surveys...');
+        const response = await axios.get(`${API_PATH}/api/surveys`);
+        console.log('Surveys fetched:', response.data);
+        this.surveys = response.data;  // Replace instead of append
       } catch (error) {
         console.error('Error fetching surveys:', error);
       }
-    },    handleDownload(survey) {
-      try {
-        // Verify that the link exists
-        if (!survey.link) {
-          throw new Error('Survey link is missing');
+    },handleDownload(survey) {      try {
+        // Handle external links (starting with http/https)
+        if (survey.link.startsWith('http')) {
+          window.open(survey.link, '_blank');
+          return;
         }
 
-        // For external links (starting with http/https) or local links
-        window.open(survey.link, '_blank');
+        // For local files
+        const viewUrl = `${API_PATH}${survey.link}`;
+        console.log('Opening survey at:', viewUrl);
+        window.open(viewUrl, '_blank');
       } catch (error) {
         console.error('Error opening file:', error);
         alert('Failed to open the survey report. Please try again.');
