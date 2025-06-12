@@ -10,6 +10,7 @@ import mysql from 'mysql2/promise';
 import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
+import initializeTables from './config/initDb.js';
 
 dotenv.config();
 
@@ -17,8 +18,16 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
+
+// Middleware
 app.use(cors());
 app.use(express.json());
+
+// Debug middleware for all requests
+app.use((req, res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+  next();
+});
 
 // Ensure "uploads" directory exists
 const uploadPath = path.join(__dirname, 'uploads');
@@ -40,7 +49,7 @@ const db = mysql.createPool({
   queueLimit: 0,
 });
 
-// Export the database connection for use in other files
+// Export the database connection
 export default db;
 
 // File Download Route for MoM (Fixed)
@@ -70,18 +79,12 @@ app.get('/api/mom/download/:id', async (req, res) => {
   }
 });
 
-// API Routes
+// Mount API Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/files', fileRoutes);
 app.use('/api/mom', momMeetingRoutes);
 app.use('/api/debug', debugRoutes);
-// Debug middleware to log all incoming requests
-app.use((req, res, next) => {
-  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
-  next();
-});
-
-app.use('/api/surveys', surveyRoutes); // Mount survey routes under /api/surveys
+app.use('/api/surveys', surveyRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
@@ -97,6 +100,21 @@ app.get('/health', (req, res) => {
   res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-// Start the server
+// Initialize database and start server
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
+initializeTables()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log('Database configuration:', {
+        host: process.env.DB_HOST || 'localhost',
+        user: process.env.DB_USER || 'root',
+        database: process.env.DB_NAME || 'iqac'
+      });
+      console.log('JWT_SECRET:', process.env.JWT_SECRET);
+      console.log(`✅ Server running on port ${PORT}`);
+    });
+  })
+  .catch(error => {
+    console.error('Failed to initialize database:', error);
+    process.exit(1);
+  });

@@ -13,8 +13,6 @@ router.get('/debug-notices', async (req, res) => {
     }
 });
 
-export default router;
-
 // Debug route for surveys
 router.get('/debug-surveys', async (req, res) => {
     try {
@@ -25,3 +23,20 @@ router.get('/debug-surveys', async (req, res) => {
         res.status(500).json({ message: 'Server error' });
     }
 });
+
+// Get table structure
+router.get('/table-info/:table', async (req, res) => {
+    try {
+        const [columns] = await db.query(`
+            SELECT COLUMN_NAME, DATA_TYPE, IS_NULLABLE, COLUMN_DEFAULT 
+            FROM INFORMATION_SCHEMA.COLUMNS 
+            WHERE TABLE_SCHEMA = ? AND TABLE_NAME = ?
+        `, [process.env.DB_NAME || 'iqac', req.params.table]);
+        res.json(columns);
+    } catch (err) {
+        console.error('Error fetching table info:', err);
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
+export default router;
