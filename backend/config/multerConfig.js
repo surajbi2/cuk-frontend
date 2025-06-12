@@ -27,11 +27,15 @@ const storage = multer.diskStorage({
 
 // File filter function to validate uploads
 const fileFilter = (req, file, cb) => {
-    // Add file type validation if needed
-    cb(null, true);
+    // Accept only PDF files
+    if (file.mimetype === 'application/pdf') {
+        cb(null, true);
+    } else {
+        cb(new Error('Only PDF files are allowed'));
+    }
 };
 
-// Configure multer upload
+// Create and export the multer instance with configuration
 export const upload = multer({ 
     storage: storage,
     fileFilter: fileFilter,
