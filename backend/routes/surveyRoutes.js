@@ -1,7 +1,7 @@
 import express from 'express';
 import { upload } from '../config/multerConfig.js';
 import { authenticateToken } from '../middleware/authMiddleware.js';
-import { uploadSurvey, getAllSurveys, downloadSurvey } from '../controllers/surveyController.js';
+import { uploadSurvey, getAllSurveys, downloadSurvey, serveSurveyFile } from '../controllers/surveyController.js';
 
 const router = express.Router();
 
@@ -28,6 +28,9 @@ router.post('/upload',
     upload.single('file'),
     uploadSurvey
 );
+
+// Serve file for viewing
+router.get('/file/:id', serveSurveyFile);
 
 // Download survey
 router.get('/download/:id', downloadSurvey);
