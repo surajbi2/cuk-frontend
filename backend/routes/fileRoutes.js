@@ -33,4 +33,4 @@ router.get('/notices/download/:id', downloadFile);
 // Approve or reject notice
 router.put('/notices/approve/:id', approveNotice);
 
-export default router;
+export default router
