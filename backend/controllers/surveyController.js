@@ -37,17 +37,14 @@ export const uploadSurvey = async (req, res) => {
 };
 
 export const getAllSurveys = async (req, res) => {
-    try {
-        const [surveys] = await db.query(
-            'SELECT id, title, year, upload_date FROM surveys WHERE status = 1 ORDER BY year DESC'
-        );
-
-        // Format surveys for frontend
+    try {        const [surveys] = await db.query(
+            'SELECT id, title, year, file_path, upload_date FROM surveys WHERE status = 1 ORDER BY year DESC'
+        );        // Format surveys for frontend
         const formattedSurveys = surveys.map(survey => ({
             type: 'SSS',
             year: survey.year,
             description: survey.title,
-            link: `/api/surveys/download/${survey.id}`,
+            link: `${process.env.BASE_URL || 'http://localhost:5000'}/uploads/${survey.file_path}`,
             uploadDate: survey.upload_date
         }));
 
