@@ -90,25 +90,54 @@ export default {
       formData.append('file', this.file);
       formData.append('title', this.title);
       formData.append('eventDate', this.noticeDate);
-      
-      try {
-        await axios.post(`${API_PATH}/api/files/upload`, formData, {
-          headers: { 
-            Authorization: sessionStorage.getItem('userToken'),
-            'Content-Type': 'multipart/form-data'
-          },
+        try {
+        console.log('Uploading file:', {
+          title: this.title,
+          date: this.noticeDate,
+          fileName: this.file.name,
+          fileSize: this.file.size,
+          fileType: this.file.type
         });
 
-        console.log('File uploaded successfully!');
-        alert('File uploaded successfully!');
-        // Clear form after successful upload
-        this.title = '';
-        this.noticeDate = '';
-        this.file = null;
+        const token = sessionStorage.getItem('userToken');
+        if (!token) {
+          throw new Error('No authentication token found');
+        }
+
+        const response = await axios.post(`${API_PATH}/api/files/upload`, formData, {
+          headers: { 
+            Authorization: token,
+            'Content-Type': 'multipart/form-data'
+          },
+          validateStatus: function (status) {
+            return status < 500; // Handle any status less than 500
+          }
+        });
+
+        if (response.status === 200 || response.status === 201) {
+          console.log('File uploaded successfully!', response.data);
+          alert('File uploaded successfully!');
+          // Clear form after successful upload
+          this.title = '';
+          this.noticeDate = '';
+          this.file = null;
+          this.$router.push('/notices');
+        } else {
+          throw new Error(response.data.message || 'Upload failed');
+        }
         
       } catch (error) {
         console.error('Upload error:', error);
-        this.errorMessage = error.response?.data?.message || 'Failed to upload file. Please try again.';
+        const errorMessage = error.response?.data?.message 
+          || error.message 
+          || 'Failed to upload file. Please try again.';
+        console.error('Detailed error:', {
+          status: error.response?.status,
+          statusText: error.response?.statusText,
+          data: error.response?.data,
+          message: errorMessage
+        });
+        this.errorMessage = errorMessage;
       }
     },
   },

@@ -166,7 +166,8 @@ export default {
         console.error('Upload error:', error);
         alert('Failed to upload survey report. Please try again.');
       }
-    },    async fetchSurveys() {
+    },   
+    async fetchSurveys() {
       try {
         console.log('Fetching surveys...');
         const response = await axios.get(`${API_PATH}/api/surveys`);
@@ -175,7 +176,8 @@ export default {
       } catch (error) {
         console.error('Error fetching surveys:', error);
       }
-    },handleDownload(survey) {      try {
+    },
+    handleDownload(survey) {      try {
         // Handle external links (starting with http/https)
         if (survey.link.startsWith('http')) {
           window.open(survey.link, '_blank');
@@ -190,6 +192,16 @@ export default {
         console.error('Error opening file:', error);
         alert('Failed to open the survey report. Please try again.');
       }
+    },
+    handleView(survey) {
+        try {
+            console.log('Viewing survey:', survey);
+            const viewUrl = `${API_PATH}/api/surveys/file/${survey.id}`;
+            window.open(viewUrl, '_blank');
+        } catch (error) {
+            console.error('Error viewing survey:', error);
+            alert('Error viewing survey. Please try again.');
+        }
     }
   },
   mounted() {

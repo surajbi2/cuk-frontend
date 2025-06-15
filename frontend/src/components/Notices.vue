@@ -148,22 +148,29 @@ export default {
         this.$router.push("/login");
       } else {
         this.$router.push("/upload");
-      }
-    }, async handleDownload(noticeId) {
+      }    }, async handleDownload(noticeId) {
       if (!API_PATH) {
         alert("API Path is not set properly!");
         return;
-      } try {
+      } 
+      try {
+        console.log('Initiating download for notice ID:', noticeId);
         const downloadUrl = `${API_PATH}/api/files/notices/download/${noticeId}`;
-        const response = await fetch(downloadUrl);
-
-        if (!response.ok) {
-          const error = await response.json();
+        console.log('Download URL:', downloadUrl);
+        const response = await fetch(downloadUrl, {
+          headers: {
+            Authorization: sessionStorage.getItem("userToken")
+          }
+        });        if (!response.ok) {
+          console.error('Download failed with status:', response.status);
+          const error = await response.json().catch(() => ({ message: 'Download failed' }));
           throw new Error(error.message || 'Download failed');
         }
 
+        console.log('Response headers:', [...response.headers.entries()]);
         // Get filename from Content-Disposition header
         const contentDisposition = response.headers.get('Content-Disposition');
+        console.log('Content-Disposition:', contentDisposition);
         let filename = this.notices.find(n => n.id === noticeId)?.title || 'download';
 
         if (contentDisposition) {
