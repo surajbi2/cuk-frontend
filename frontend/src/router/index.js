@@ -13,6 +13,7 @@ import Gallery from '../views/Gallery.vue';
 import MomUpload from '../components/MomUpload.vue';
 import MomReports from '../components/MomReports.vue';
 import Policies from '../views/Policies.vue';
+import AisheReports from '../views/AisheReports.vue';
 
 const routes = [
     { path: '/', name: 'Welcome', component: Welcome },
@@ -30,7 +31,8 @@ const routes = [
     { path: '/Gallery', name: 'Gallery', component: Gallery },
     { path: '/m-o-m', name: 'minutes-of-meeting', component: MomUpload, meta: { requiresAuth: true } },
     { path: '/mom-reports', name: 'mom-reports', component: MomReports},
-    { path: '/policies', name: 'Policies', component: Policies }
+    { path: '/policies', name: 'Policies', component: Policies },
+    { path: '/aishe-reports', name: 'AisheReports', component: AisheReports }
 ];
 
 const router = createRouter({

@@ -39,7 +39,7 @@
     <section class="px-4 md:px-8 py-12 max-w-7xl mx-auto">
       <div class="flex flex-col lg:flex-row gap-8">
         <!-- Leadership Cards -->
-        <div class="w-full lg:w-1/3 space-y-8">
+        <div class="w-full lg:w-1/3 space-y-8 overflow-auto max-h-screen scroll-m-4">
           <div 
             class="bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 group relative overflow-hidden"
           >
@@ -47,20 +47,19 @@
             <div class="relative flex flex-col items-center space-y-6">
               <div class="relative w-44 h-44 rounded-full overflow-hidden border-4 border-white shadow-lg">
                 <img 
-                  src="https://cuk.ac.in/CUK-IQAC/img/director.jpeg" 
+                  src="/director.jpg" 
                   alt="Director"
-                  class="w-full h-full object-cover"
+                  class="w-full h-full object-fill"
                 />
                 <div class="absolute inset-0 bg-gradient-to-t from-indigo-900/30"></div>
               </div>
               <div class="text-center space-y-2">
-                <h3 class="text-2xl font-bold text-gray-900">Prof. Ganesh Pawar</h3>
+                <h3 class="text-2xl font-bold text-gray-900">Prof. M. Amarendra</h3>
                 <div class="inline-flex items-center gap-2 text-indigo-600 font-medium px-4 py-1.5 rounded-full bg-indigo-50">
-                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
+                  
                   <span>Director</span>
                 </div>
+                <p class="text-gray-600">Dept. of Electrical Engineering</p>
               </div>
             </div>
           </div>
@@ -72,20 +71,43 @@
             <div class="relative flex flex-col items-center space-y-6">
               <div class="relative w-44 h-44 rounded-full overflow-hidden border-4 border-white shadow-lg">
                 <img 
-                  src="https://cuk.ac.in/CUK-IQAC/img/deputy.jpeg" 
+                  src="/deputy-director.jpg" 
+                  alt="Deputy Director"
+                  class="w-full h-full object-fill"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-indigo-900/30"></div>
+              </div>
+              <div class="text-center space-y-2">
+                <h3 class="text-2xl font-bold text-gray-900">Dr. Nagaraj V Dharwadkar</h3>
+                <div class="inline-flex items-center gap-2 text-indigo-600 font-medium px-4 py-1.5 rounded-full bg-indigo-50">
+                  
+                  <span>Deputy Director</span>
+                </div>
+                <p class="text-gray-600">Dept. of Computer Science</p>
+              </div>
+            </div>
+          </div>
+          <div 
+            class="bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 group relative overflow-hidden"
+          >
+            <div class="absolute inset-0 bg-gradient-to-br from-indigo-50/50 to-white/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div class="relative flex flex-col items-center space-y-6">
+              <div class="relative w-44 h-44 rounded-full overflow-hidden border-4 border-white shadow-lg">
+                <img 
+                  src="/deputy-director-2.jpg" 
                   alt="Deputy Director"
                   class="w-full h-full object-cover"
                 />
                 <div class="absolute inset-0 bg-gradient-to-t from-indigo-900/30"></div>
               </div>
               <div class="text-center space-y-2">
-                <h3 class="text-2xl font-bold text-gray-900">Dr. Venkata Ramana Doddi</h3>
+                <h3 class="text-2xl font-bold text-gray-900">Dr. N Sandeep
+</h3>
                 <div class="inline-flex items-center gap-2 text-indigo-600 font-medium px-4 py-1.5 rounded-full bg-indigo-50">
-                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
+                  
                   <span>Deputy Director</span>
                 </div>
+                <p class="text-gray-600">Dept. of Mathematics</p>
               </div>
             </div>
           </div>
@@ -133,6 +155,7 @@
             </div>
           </div>
         </div>
+        
       </div>
     </section>
   </div>

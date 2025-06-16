@@ -71,7 +71,7 @@
           © 2024 All Rights Reserved. <strong>Central University of Karnataka</strong>, Aland Road, Kadaganchi Kalaburagi-585367, India
         </p>
         <p class="text-xs text-gray-500 leading-relaxed">
-          A site developed by <strong>Ramagiri Suraj Kumar </strong> | MCA 2023-25 | School of Computer Science, Central University of Karnataka.
+          A site developed by <strong>Ramagiri Suraj Kumar </strong> | MCA 2023-25 | School of Computer Science | Maintained by <strong>System Analyst</strong> Central University of Karnataka.
         </p>
       </div>
     </div>

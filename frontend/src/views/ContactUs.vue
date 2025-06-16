@@ -57,7 +57,7 @@
                 </svg>
               </span>
               <div class="ml-3 text-gray-600">
-                <p class="font-medium">Prof. Ganesh Pawar</p>
+                <p class="font-medium">Prof. M. Amarendra</p>
                 <p>Director, Internal Quality Assurance Cell (IQAC)</p>
               </div>
             </div>
@@ -103,7 +103,7 @@
               </span>
               <div class="ml-3 text-gray-600">
                 <p>iqac@cuk.ac.in</p>
-                <p>ganeshpawar@cuk.ac.in</p>
+                <p>amarendra@cuk.ac.in</p>
               </div>
             </div>
           </div>

@@ -1,44 +1,50 @@
 <template>
-    <div class="w-auto min-h-screen bg-gray-100 p-4 border-slate-100 rounded-lg border-2 m-5">
-      <h1 class="text-center text-3xl bg-blue-950 rounded-xl font-bold text-white p-2 my-3">IQAC Committee Members</h1>
-      <div class="flex flex-col md:flex-row items-center justify-center">
-      <div class="md:w-[100%] w-[100%] my-5 bg-white p-5 rounded-xl transform hover:scale-105 flex transition-all duration-700 ease-in-out">
-        <div class="vc flex md:flex-row flex-col items-center justify-center w-[100%] md:h-40">
-     
-          <img src="https://cuk.ac.in/Academic/Images/bsatyanarayana.jpg" alt="vc" class="w-24 h-24 md:ml-14 md:w-40 md:h-40 rounded-full object-cover shadow-md">
-          <div class="flex flex-col md:items-center items-center md:ml-10">
-        
-          <h2 class="md:text-xl font-semibold text-gray-800 mt-3">Prof. Battu Satyanarayana</h2>
-          <p class="text-gray-600 text-sm">Hon'ble Vice Chancellor</p>
-          <p class="text-blue-600 font-medium text-sm mt-1">Chairperson</p>
-           </div>
-   
+  <div class="w-full min-h-screen bg-gray-100 p-4 m-5">
+    <!-- Page Heading -->
+    <h1 class="text-center text-4xl font-bold bg-gradient-to-r from-blue-800 to-blue-600 text-white py-4 rounded-xl shadow-lg mb-8">
+      IQAC Committee Members
+    </h1>
 
+    <!-- Vice Chancellor Highlight -->
+    <div class="flex justify-center mb-10">
+      <div class="bg-white w-full md:w-3/4 lg:w-2/3 p-6 rounded-2xl shadow-xl border-l-8 border-blue-800 hover:scale-[1.02] transition-transform duration-500">
+        <div class="flex flex-col md:flex-row items-center gap-6">
+          <img src="https://cuk.ac.in/Academic/Images/bsatyanarayana.jpg"
+            alt="vc"
+            class="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover shadow-md border-4 border-blue-700" />
+          <div class="text-center md:text-left">
+            <h2 class="text-2xl font-bold text-blue-800">Prof. Battu Satyanarayana</h2>
+            <p class="text-gray-600">Hon'ble Vice Chancellor</p>
+            <p class="text-blue-600 font-semibold mt-1">Chairperson</p>
+          </div>
         </div>
-    
+      </div>
+    </div>
+
+    <!-- Committee Members Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div v-for="member in committeeMembers" :key="member.id"
+        class="bg-white shadow-md hover:shadow-xl transition-shadow duration-300 rounded-xl p-5 flex flex-col items-center hover:scale-105 transform ">
+        <img :src="member.image" :alt="member.name" class="w-28 h-28 rounded-full object-cover shadow-md border-2 border-gray-300" />
+        <h2 class="text-lg font-semibold text-gray-800 mt-4 text-center">{{ member.name }}</h2>
+        <p class="text-gray-600 text-sm text-center">{{ member.designation }}</p>
+        <p class="text-blue-600 font-medium text-sm mt-1 text-center">{{ member.iqacRole }}</p>
+      </div>
+    </div>
+
+    <!-- Official Document Section -->
+    <div class="mt-10 flex justify-center">
+      <div class="bg-white p-4 rounded-xl shadow-lg flex items-center justify-between w-full md:w-1/2">
+        <p class="text-gray-700 font-medium">View official IQAC Committee document</p>
+        <a href="https://cuk.ac.in/CUK-IQAC/pdf/IQAC%20Committee.pdf" target="_blank"
+          class="bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-6 rounded-xl transition duration-300 transform hover:scale-105">
+          View
+        </a>
+      </div>
+    </div>
   </div>
-  
+</template>
 
-    </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div v-for="member in committeeMembers" :key="member.id" 
-          class="bg-white shadow-lg rounded-xl p-5 flex flex-col items-center transition-transform transform hover:scale-105">
-  
-          <img :src="member.image" :alt="member.name" class="w-32 h-32 rounded-full object-cover shadow-md">
-  
-          <h2 class="text-xl font-semibold text-gray-800 mt-3">{{ member.name }}</h2>
-          <p class="text-gray-600 text-sm">{{ member.designation }}</p>
-          <p class="text-blue-600 font-medium text-sm mt-1">{{ member.iqacRole }}</p>
-        </div>
-      </div>
-      <div class="md:w-[23%] w-[100%] md:m-5 md:mx-1 my-2 bg-white p-3 rounded-xl flex ">
-        <div class="w-full flex items-center justify-start">
-         <p class="m-3">View official document</p>
-          <a href="https://cuk.ac.in/CUK-IQAC/pdf/IQAC%20Committee.pdf" target="_blank" class="flex bg-blue-600 hover:bg-blue-800 hover:transform hover:scale-110 font-bold transition-all duration-700 ease-in-out text-white p-2 md:p-3 md:px-8 rounded-xl">view</a>
-        </div>
-      </div>
-    </div>
-  </template>
   
   <script>
   export default {
