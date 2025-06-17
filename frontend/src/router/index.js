@@ -14,7 +14,7 @@ import MomUpload from '../components/MomUpload.vue';
 import MomReports from '../components/MomReports.vue';
 import Policies from '../views/Policies.vue';
 import AisheReports from '../views/AisheReports.vue';
-
+import AQAR from '../views/AQAR.vue';
 const routes = [
     { path: '/', name: 'Welcome', component: Welcome },
     { path: '/login', name: 'Login', component: Login },
@@ -32,7 +32,8 @@ const routes = [
     { path: '/m-o-m', name: 'minutes-of-meeting', component: MomUpload, meta: { requiresAuth: true } },
     { path: '/mom-reports', name: 'mom-reports', component: MomReports},
     { path: '/policies', name: 'Policies', component: Policies },
-    { path: '/aishe-reports', name: 'AisheReports', component: AisheReports }
+    { path: '/aishe-reports', name: 'AisheReports', component: AisheReports },
+    { path: '/aqar', name: 'AQAR', component: AQAR }
 ];
 
 const router = createRouter({

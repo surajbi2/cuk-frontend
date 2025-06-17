@@ -38,11 +38,7 @@ export default {
   data() {
     return {
       policies: [
-        {
-          title: 'Green Audit',
-          description: 'Environmental assessment and sustainability guidelines',
-          link: 'https://cuk.ac.in/CUK-IQAC/Policies/Green%20Audit.pdf'
-        },
+        
         {
           title: 'IT Policy',
           description: 'Information Technology guidelines and procedures',

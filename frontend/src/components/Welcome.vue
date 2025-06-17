@@ -1,62 +1,62 @@
 <template>
   <div class="min-h-screen bg-gray-50">
     <!-- Custom Carousel -->
-    <section class="relative h-[50vh] w-[98%] mx-auto mt-4 overflow-hidden rounded-[2rem] shadow-2xl hidden md:block">
+    <section class="relative h-[50vh] w-[98%] mx-auto mt-2 overflow-hidden rounded-[2rem] shadow-2xl hidden md:block">
       <div class="relative h-full">
-    <div 
-      v-for="(image, index) in images"
-      :key="index"
-      class="absolute inset-0 transition-opacity duration-1000"
-      :class="{ 'opacity-100': activeIndex === index, 'opacity-0': activeIndex !== index }"
-    >
-      <img 
-        :src="image.src" 
-        :alt="image.title"
-        class="w-full h-full object-cover object-center"
-      />
-      <div class="absolute inset-0 bg-gradient-to-t from-gray-900/60 via-gray-900/20 to-transparent"></div>
-    </div>
-  </div>
+        <div v-for="(image, index) in images" :key="index" class="absolute inset-0 transition-opacity duration-1000"
+          :class="{ 'opacity-100': activeIndex === index, 'opacity-0': activeIndex !== index }">
+          <img :src="image.src" :alt="image.title" class="w-full h-full object-cover object-center" />
+          <div class="absolute inset-0 bg-gradient-to-t from-gray-900/60 via-gray-900/20 to-transparent"></div>
+        </div>
+      </div>
 
-  <!-- Image Title -->
-  <div class="absolute bottom-12 left-1/2 -translate-x-1/2 text-white text-lg font-semibold bg-black px-4 py-2 rounded-lg">
-    {{ images[activeIndex].title }}
-  </div>
+      <!-- Image Title -->
+      <div
+        class="absolute bottom-12 left-1/2 -translate-x-1/2 text-white text-lg font-semibold bg-black px-4 py-2 rounded-lg">
+        {{ images[activeIndex].title }}
+      </div>
 
-  <!-- Carousel Indicators -->
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-10">
-    <button 
-      v-for="(_, index) in images"
-      :key="index"
-      @click="activeIndex = index"
-      class="w-8 h-1.5 rounded-full transition-all duration-300 bg-white/30 hover:bg-white/50"
-      :class="{ '!bg-white w-12': activeIndex === index }"
-    />
-  </div>
+      <!-- Carousel Indicators -->
+      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+        <button v-for="(_, index) in images" :key="index" @click="activeIndex = index"
+          class="w-8 h-1.5 rounded-full transition-all duration-300 bg-white/30 hover:bg-white/50"
+          :class="{ '!bg-white w-12': activeIndex === index }" />
+      </div>
     </section>
+    <!-- Announcement Marquee -->
+    <div
+      class="marquee-wrapper mt-2 bg-gradient-to-r from-blue-700 via-blue-800 to-gray-900 py-3 shadow-xl inset-1 rounded-full mx-2 overflow-hidden cursor-pointer">
+      <div class="w-full overflow-hidden">
+        <p
+          class="animate-marquee text-white font-semibold text-base sm:text-lg tracking-wide flex items-center gap-2 sm:gap-4 min-w-full ">
+          <img src="/announcement.svg" alt="Announcement" class="h-5 w-5 sm:h-6 sm:w-6 inline-block" />
+          Important: The new IQAC website will be live soon! Stay tuned for updates and new features.
+        </p>
+      </div>
+    </div>
+
+
 
     <!-- Content Section -->
-    <section class="px-4 md:px-8 py-12 max-w-7xl mx-auto">
+    <section class="px-4 md:px-8 py-6 max-w-7xl mx-auto">
       <div class="flex flex-col lg:flex-row gap-8">
         <!-- Leadership Cards -->
-        <div class="w-full lg:w-1/3 space-y-8 overflow-auto max-h-screen scroll-m-4">
-          <div 
-            class="bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 group relative overflow-hidden"
-          >
-            <div class="absolute inset-0 bg-gradient-to-br from-indigo-50/50 to-white/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            <div class="relative flex flex-col items-center space-y-6">
+        <div class="w-full lg:w-1/3 space-y-4 ">
+          <div
+            class="bg-white rounded-2xl p-2 shadow-xl hover:shadow-2xl transition-all duration-300 group relative overflow-hidden">
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-indigo-50/50 to-white/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            </div>
+            <div class="relative flex flex-col items-center space-y-2">
               <div class="relative w-44 h-44 rounded-full overflow-hidden border-4 border-white shadow-lg">
-                <img 
-                  src="/director.jpg" 
-                  alt="Director"
-                  class="w-full h-full object-fill"
-                />
+                <img src="/director.jpg" alt="Director" class="w-full h-full object-fill" />
                 <div class="absolute inset-0 bg-gradient-to-t from-indigo-900/30"></div>
               </div>
               <div class="text-center space-y-2">
                 <h3 class="text-2xl font-bold text-gray-900">Prof. M. Amarendra</h3>
-                <div class="inline-flex items-center gap-2 text-indigo-600 font-medium px-4 py-1.5 rounded-full bg-indigo-50">
-                  
+                <div
+                  class="inline-flex items-center gap-2 text-indigo-600 font-medium px-4 py-1.5 rounded-full bg-indigo-50">
+
                   <span>Director</span>
                 </div>
                 <p class="text-gray-600">Dept. of Electrical Engineering</p>
@@ -64,47 +64,43 @@
             </div>
           </div>
 
-          <div 
-            class="bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 group relative overflow-hidden"
-          >
-            <div class="absolute inset-0 bg-gradient-to-br from-indigo-50/50 to-white/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            <div class="relative flex flex-col items-center space-y-6">
+          <div
+            class="bg-white rounded-2xl p-2 shadow-xl hover:shadow-2xl transition-all duration-300 group relative overflow-hidden">
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-indigo-50/50 to-white/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            </div>
+            <div class="relative flex flex-col items-center space-y-2">
               <div class="relative w-44 h-44 rounded-full overflow-hidden border-4 border-white shadow-lg">
-                <img 
-                  src="/deputy-director.jpg" 
-                  alt="Deputy Director"
-                  class="w-full h-full object-fill"
-                />
+                <img src="/deputy-director.jpg" alt="Deputy Director" class="w-full h-full object-fill" />
                 <div class="absolute inset-0 bg-gradient-to-t from-indigo-900/30"></div>
               </div>
-              <div class="text-center space-y-2">
+              <div class="text-center space-y-1">
                 <h3 class="text-2xl font-bold text-gray-900">Dr. Nagaraj V Dharwadkar</h3>
-                <div class="inline-flex items-center gap-2 text-indigo-600 font-medium px-4 py-1.5 rounded-full bg-indigo-50">
-                  
+                <div
+                  class="inline-flex items-center gap-2 text-indigo-600 font-medium px-4 py-1.5 rounded-full bg-indigo-50">
+
                   <span>Deputy Director</span>
                 </div>
                 <p class="text-gray-600">Dept. of Computer Science</p>
               </div>
             </div>
           </div>
-          <div 
-            class="bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 group relative overflow-hidden"
-          >
-            <div class="absolute inset-0 bg-gradient-to-br from-indigo-50/50 to-white/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div
+            class="bg-white rounded-2xl p-2 shadow-xl hover:shadow-2xl transition-all duration-300 group relative overflow-hidden">
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-indigo-50/50 to-white/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            </div>
             <div class="relative flex flex-col items-center space-y-6">
               <div class="relative w-44 h-44 rounded-full overflow-hidden border-4 border-white shadow-lg">
-                <img 
-                  src="/deputy-director-2.jpg" 
-                  alt="Deputy Director"
-                  class="w-full h-full object-cover"
-                />
+                <img src="/deputy-director-2.jpg" alt="Deputy Director" class="w-full h-full object-cover" />
                 <div class="absolute inset-0 bg-gradient-to-t from-indigo-900/30"></div>
               </div>
               <div class="text-center space-y-2">
                 <h3 class="text-2xl font-bold text-gray-900">Dr. N Sandeep
-</h3>
-                <div class="inline-flex items-center gap-2 text-indigo-600 font-medium px-4 py-1.5 rounded-full bg-indigo-50">
-                  
+                </h3>
+                <div
+                  class="inline-flex items-center gap-2 text-indigo-600 font-medium px-4 py-1.5 rounded-full bg-indigo-50">
+
                   <span>Deputy Director</span>
                 </div>
                 <p class="text-gray-600">Dept. of Mathematics</p>
@@ -116,32 +112,33 @@
         <!-- IQAC Content -->
         <div class="w-full lg:w-2/3 bg-white rounded-2xl p-10 shadow-xl">
           <div class="max-w-3xl mx-auto">
-            <h2 class="text-4xl font-bold text-gray-900 mb-8 text-center relative pb-4 after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-indigo-600">
+            <h2
+              class="text-4xl font-bold text-gray-900 mb-8 text-center relative pb-4 after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-indigo-600">
               About IQAC
             </h2>
-            
+
             <div class="space-y-8">
               <div class="space-y-6 text-gray-600 leading-relaxed">
                 <p class="text-lg">
-                  The <strong>Central University of Karnataka</strong> established its 
-                  <strong>Internal Quality Assurance Cell (IQAC)</strong> in 2013 to ensure excellence across all academic and administrative operations through systematic quality enhancement initiatives.
+                  The <strong>Central University of Karnataka</strong> established its
+                  <strong>Internal Quality Assurance Cell (IQAC)</strong> in 2013 to ensure excellence across all
+                  academic and administrative operations through systematic quality enhancement initiatives.
                 </p>
 
                 <p class="text-lg">
-                  Operating under the guidance of the Hon'ble Vice Chancellor, IQAC comprises multidisciplinary experts committed to developing innovative benchmarks and implementing best practices in higher education.
+                  Operating under the guidance of the Hon'ble Vice Chancellor, IQAC comprises multidisciplinary experts
+                  committed to developing innovative benchmarks and implementing best practices in higher education.
                 </p>
               </div>
 
               <div class="space-y-6">
                 <h3 class="text-2xl font-bold text-gray-900">Key Focus Areas</h3>
                 <div class="grid md:grid-cols-2 gap-6">
-                  <div 
-                    v-for="(initiative, index) in initiatives"
-                    :key="index"
-                    class="p-6 bg-gray-50 rounded-xl border-l-4 border-amber-600 hover:bg-white transition-all duration-300"
-                  >
+                  <div v-for="(initiative, index) in initiatives" :key="index"
+                    class="p-6 bg-gray-50 rounded-xl border-l-4 border-amber-600 hover:bg-white transition-all duration-300">
                     <div class="flex items-start gap-4">
-                      <div class="w-10 h-10 bg-amber-800 text-white rounded-full flex items-center justify-center shrink-0">
+                      <div
+                        class="w-10 h-10 bg-amber-800 text-white rounded-full flex items-center justify-center shrink-0">
                         {{ index + 1 }}
                       </div>
                       <div>
@@ -155,7 +152,7 @@
             </div>
           </div>
         </div>
-        
+
       </div>
     </section>
   </div>
@@ -169,11 +166,11 @@ export default {
   setup() {
     const activeIndex = ref(0)
     const images = [
-  { src: "/bg.jpg", title: "Administrative Block" },
-  { src: "/aerial.jpg", title: "Academic Block" },
-  { src: "/DJI_0209.jpg", title: "Entrance" },
-  { src: "/DJI_0219.JPG", title: "Aerial View of Campus" }
-]
+      { src: "/bg.jpg", title: "Administrative Block" },
+      { src: "/aerial.jpg", title: "Academic Block" },
+      { src: "/DJI_0209.jpg", title: "Entrance" },
+      { src: "/DJI_0219.JPG", title: "Aerial View of Campus" }
+    ]
 
 
     const initiatives = [
@@ -228,15 +225,15 @@ export default {
   .text-4xl {
     font-size: 2rem;
   }
-  
+
   .text-2xl {
     font-size: 1.5rem;
   }
-  
+
   .p-10 {
     padding: 1.5rem;
   }
-  
+
   .w-44 {
     width: 160px;
     height: 160px;
@@ -246,5 +243,25 @@ export default {
 /* Smooth image transitions */
 img {
   transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-marquee {
+  display: inline-block;
+  white-space: nowrap;
+  animation: marquee 20s linear infinite;
+}
+
+.marquee-wrapper:hover .animate-marquee {
+  animation-play-state: paused;
 }
 </style>

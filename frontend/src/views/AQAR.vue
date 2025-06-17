@@ -1,24 +1,27 @@
 <template>
-  <div class="survey-container">
-    <div class="survey-header">
+  <div class="aqar-container">
+    <div class="aqar-header">
       <svg class="document-icon" viewBox="0 0 24 24" fill="white" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-        <path d="M12 3v6h6" class="text-blue-600"/>
+        <path d="M14 2.25V7H18.75M18 21H6C4.343 21 3 19.657 3 18V6C3 4.343 4.343 3 6 3H12.172C12.702 3 13.211 3.211 13.586 3.586L18.414 8.414C18.789 8.789 19 9.298 19 9.828V18C19 19.657 17.657 21 16 21Z"/>
+        <path d="M8 13H16" class="text-blue-600"/>
+        <path d="M8 17H16" class="text-blue-600"/>
+        <path d="M15 9H18.5L15 5.5V9Z" fill="currentColor" class="text-blue-400"/>
       </svg>
-      <h2 class="md:text-2xl font-bold text-md">Student Satisfaction Survey Reports</h2>
+      <h2 class="md:text-2xl font-bold text-md">Annual Quality Assurance Reports (AQAR)</h2>
     </div>
     
-    <div class="grid-container">  
-      <a v-for="(item, index) in surveys" 
-         :key="item.year"
-         :href="item.link" 
-         target="_blank"
-         class="report-card"
-         :style="`--hue: ${index * 40}; --index: ${index}`">
+    <div class="grid-container">
+      <a 
+        v-for="(item, index) in aqarReports" 
+        :key="item.year"
+        :href="item.link" 
+        target="_blank"
+        class="report-card"
+        :style="getCardStyle(item.year, index)"
+      >
         <div class="card-content">
-          <span class="year-badge">{{ item.type }}</span>
+          <span class="year-badge">CUK-AQAR</span>
           <span class="report-year">{{ item.year }}</span>
-          <div class="description">{{ item.description }}</div>
           <svg class="pdf-icon" viewBox="0 0 24 24">
             <path d="M14 2v6h6v12H4V2h10m2-2H2v20h20V8l-6-6z"/>
             <path d="M16 13h-3v6h-2v-6H8v-2h8v2zM11 7h2v2h-2z"/>
@@ -31,70 +34,56 @@
 
 <script>
 export default {
-  name: "StudentSurvey",
+  name: "AQAR",
   data() {
     return {
-      surveys: [
+      aqarReports: [
         {
-          type: 'SSS',
-          year: '2023-24',
-          description: 'Student Satisfaction Survey',
-          link: 'https://cuk.ac.in/CUK-IQAC/pdf/students%20feedback%202023-24.pdf'
-        },
-        {
-          type: 'SSS',
           year: '2022-23',
-          description: 'Student Satisfaction Survey Report',
-          link: 'https://www.cuk.ac.in/NAAC2022/2.7.1%202022-2023.pdf'
+          link: 'https://www.cuk.ac.in/NAAC2022/AQAR/AQAR%202022-2023.pdf'
         },
         {
-          type: 'SSS',
+          year: '2021-22',
+          link: 'https://www.cuk.ac.in/NAAC2022/AQAR/2021-2022.pdf'
+        },
+        {
           year: '2020-21',
-          description: 'Student Satisfaction Survey Data',
-          link: 'https://cuk.ac.in/CUK-IQAC/pdf/SSS%202020-21.pdf'
+          link: 'https://www.cuk.ac.in/NAAC2022/AQAR/2020-21.pdf'
         },
         {
-          type: 'SSS',
           year: '2019-20',
-          description: 'Student Satisfaction Survey Report',
-          link: 'https://www.cuk.ac.in/NAAC2022/2019-20.pdf'
+          link: 'https://www.cuk.ac.in/NAAC2022/AQAR/2019-20.pdf'
         },
         {
-          type: 'SSS',
           year: '2018-19',
-          description: 'Student Satisfaction Survey Analysis',
-          link: 'https://www.cuk.ac.in/NAAC2022/2018-19.pdf'
+          link: 'https://www.cuk.ac.in/NAAC2022/AQAR/2018-19.pdf'
         },
         {
-          type: 'SSS',
           year: '2017-18',
-          description: 'Student Satisfaction Survey Analysis',
-          link: 'https://www.cuk.ac.in/NAAC2022/2017-18.pdf'
+          link: 'https://www.cuk.ac.in/NAAC2022/AQAR/2017-18.pdf'
         },
         {
-          type: 'SSS',
           year: '2016-17',
-          description: 'Student Satisfaction Survey Analysis',
-          link: 'https://www.cuk.ac.in/NAAC2022/2016-17.pdf'
-        },
-        {
-          type: 'SFF',
-          description: 'Student Feedback Form',
-          link: 'https://www.cuk.ac.in/NAAC2022/Students%20Feedback%20Form.pdf'
-        },
-        {
-          type: 'SSS',
-          description: 'Student Statisfaction Survey Questionnaire',
-          link: 'https://www.cuk.ac.in/NAAC2022/SSS-Questinnaire_Students.pdf'
+          link: 'https://www.cuk.ac.in/NAAC2022/AQAR/2016-2017.pdf'
         }
       ]
     };
+  },
+  methods: {
+    getCardStyle(year, index) {
+      const yearNum = parseInt(year.split('-')[0]);
+      const hue = yearNum % 8 * 45;
+      return {
+        '--hue': hue,
+        '--index': index
+      };
+    }
   }
 };
 </script>
 
 <style scoped>
-.survey-container {
+.aqar-container {
   background: linear-gradient(195deg, #f8f9fc 0%, #f1f5f9 100%);
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 1.5rem;
@@ -105,7 +94,7 @@ export default {
   margin: 2rem auto;
 }
 
-.survey-header {
+.aqar-header {
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -117,7 +106,7 @@ export default {
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
-.survey-header h1 {
+.aqar-header h1 {
   font-size: 1.75rem;
   font-weight: 600;
   letter-spacing: -0.025em;
@@ -133,9 +122,13 @@ export default {
   stroke: #2563eb;
 }
 
+.document-icon .text-blue-400 {
+  fill: #fff;
+}
+
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1.5rem;
   padding: 0.5rem;
 }
@@ -198,7 +191,7 @@ export default {
 }
 
 .report-year {
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 700;
   color: #1e293b;
   letter-spacing: -0.025em;
@@ -207,14 +200,6 @@ export default {
   background-clip: text;
   color: transparent;
   -webkit-text-fill-color: transparent;
-}
-
-.description {
-  font-size: 0.875rem;
-  color: #64748b;
-  line-height: 1.25rem;
-  text-align: center;
-  margin-bottom: 0.5rem;
 }
 
 .pdf-icon {
@@ -249,7 +234,7 @@ export default {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .survey-container {
+  .nirf-container {
     margin: 1rem;
     padding: 1.5rem;
   }
@@ -259,7 +244,7 @@ export default {
   }
   
   .report-year {
-    font-size: 1.25rem;
+    font-size: 1.75rem;
   }
 }
 

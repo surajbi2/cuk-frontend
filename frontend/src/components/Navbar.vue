@@ -1,5 +1,5 @@
 <template >
-  <nav class="bg-[#880d1e] text-white text-center py-3 rounded-3xl mt-1 text-md font-medium relative mx-1">
+  <nav class="bg-[#880d1e] text-white text-center py-3 rounded-3xl mt-1 text-md font-semibold leading-relaxed relative mx-1">
     <!-- Mobile Menu Header -->
     <div class="flex justify-between items-center px-4 md:hidden">
       <div class="text-xl font-bold">Menu</div>
@@ -64,55 +64,11 @@
 
       <!-- AQAR -->
       <li class="relative group">
-        <a href="#"
+        <router-link to="/aqar" @click="closeMenu"
           class="relative hover:text-white no-underline px-4 py-1 hover:before:scale-x-50 before:scale-x-0 before:origin-center before:content-[''] before:absolute before:bottom-0 before:left-0 before:right-0 before:h-0.5 before:bg-white before:transition-transform before:duration-300 before:ease-linear">
-          AQAR ▼
-        </a>
-        <ul
-          class="absolute hidden group-hover:flex flex-col bg-[#880d1e] rounded-lg shadow-lg py-2 mt-0 min-w-[10rem] text-left transition duration-300 ease-in-out z-10">
-          <li>
-            <a href="https://www.cuk.ac.in/NAAC2022/AQAR/AQAR%202022-2023.pdf" @click="closeMenu"
-              class="block relative hover:text-white no-underline px-4 py-1 hover:before:scale-x-75 before:scale-x-0 before:origin-left before:content-[''] before:absolute before:bottom-0 before:left-5 before:right-0 before:h-0.5 before:bg-white before:transition-transform before:duration-300 before:ease-linear" target="_blank">
-              AQAR 2022-2023
-            </a>
-          </li>
-          <li>
-            <a href="https://www.cuk.ac.in/NAAC2022/AQAR/2021-2022.pdf" @click="closeMenu"
-              class="block relative hover:text-white no-underline px-4 py-1 hover:before:scale-x-75 before:scale-x-0 before:origin-left before:content-[''] before:absolute before:bottom-0 before:left-5 before:right-0 before:h-0.5 before:bg-white before:transition-transform before:duration-300 before:ease-linear" target="_blank">
-              AQAR 2021-2022
-            </a>
-          </li>
-          <li>
-            <a href="https://www.cuk.ac.in/NAAC2022/AQAR/2020-21.pdf" @click="closeMenu"
-              class="block relative hover:text-white no-underline px-4 py-1 hover:before:scale-x-75 before:scale-x-0 before:origin-left before:content-[''] before:absolute before:bottom-0 before:left-5 before:right-0 before:h-0.5 before:bg-white before:transition-transform before:duration-300 before:ease-linear" target="_blank">
-              AQAR 2020-2021
-            </a>
-          </li>
-          <li>
-            <a href="https://www.cuk.ac.in/NAAC2022/AQAR/2019-20.pdf" @click="closeMenu"
-              class="block relative hover:text-white no-underline px-4 py-1 hover:before:scale-x-75 before:scale-x-0 before:origin-left before:content-[''] before:absolute before:bottom-0 before:left-5 before:right-0 before:h-0.5 before:bg-white before:transition-transform before:duration-300 before:ease-linear" target="_blank">
-              AQAR 2019-2020
-            </a>
-          </li>
-          <li>
-            <a href="https://www.cuk.ac.in/NAAC2022/AQAR/2018-19.pdf" @click="closeMenu"
-              class="block relative hover:text-white no-underline px-4 py-1 hover:before:scale-x-75 before:scale-x-0 before:origin-left before:content-[''] before:absolute before:bottom-0 before:left-5 before:right-0 before:h-0.5 before:bg-white before:transition-transform before:duration-300 before:ease-linear" target="_blank">
-              AQAR 2018-2019
-            </a>
-          </li>
-          <li>
-            <a href="https://www.cuk.ac.in/NAAC2022/AQAR/2017-18.pdf" @click="closeMenu"
-              class="block relative hover:text-white no-underline px-4 py-1 hover:before:scale-x-75 before:scale-x-0 before:origin-left before:content-[''] before:absolute before:bottom-0 before:left-5 before:right-0 before:h-0.5 before:bg-white before:transition-transform before:duration-300 before:ease-linear" target="_blank">
-              AQAR 2017-2018
-            </a>
-          </li>
-          <li>
-            <a href="https://www.cuk.ac.in/NAAC2022/AQAR/2017-18.pdf" @click="closeMenu"
-              class="block relative hover:text-white no-underline px-4 py-1 hover:before:scale-x-75 before:scale-x-0 before:origin-left before:content-[''] before:absolute before:bottom-0 before:left-5 before:right-0 before:h-0.5 before:bg-white before:transition-transform before:duration-300 before:ease-linear" target="_blank">
-              AQAR 2016-2017
-            </a>
-          </li>
-        </ul>
+          AQAR
+        </router-link>
+        
       </li>
 
       <!-- NAAC -->
@@ -129,7 +85,8 @@
               SSR - 2024
             </a>
           </li>
-          <li>            <router-link to="/student-survey" @click="closeMenu"
+          <li>           
+            <router-link to="/student-survey" @click="closeMenu"
               class="block relative hover:text-white no-underline px-4 py-1 hover:before:scale-x-75 before:scale-x-0 before:origin-left before:content-[''] before:absolute before:bottom-0 before:left-5 before:right-0 before:h-0.5 before:bg-white before:transition-transform before:duration-300 before:ease-linear">
               Student Satisfaction Survey
             </router-link>
@@ -203,6 +160,12 @@
               class="block relative hover:text-white no-underline px-4 py-1 hover:before:scale-x-50 before:scale-x-0 before:origin-left before:content-[''] before:absolute before:bottom-0 before:left-5 before:right-0 before:h-0.5 before:bg-white before:transition-transform before:duration-300 before:ease-linear">
               AISHE Certificates
             </router-link>
+          </li>
+          <li>
+            <a href="https://cuk.ac.in/CUK-IQAC/Policies/Green%20Audit.pdf" @click="closeMenu"
+              class="block relative hover:text-white no-underline px-4 py-1 hover:before:scale-x-50 before:scale-x-0 before:origin-left before:content-[''] before:absolute before:bottom-0 before:left-5 before:right-0 before:h-0.5 before:bg-white before:transition-transform before:duration-300 before:ease-linear" target="_blank">
+              Green Audit Report
+          </a>
           </li>
         </ul>
       </li>
