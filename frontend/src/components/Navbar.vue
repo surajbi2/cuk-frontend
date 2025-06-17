@@ -144,7 +144,7 @@
             </a>
           </li>
           <li>
-            <a href="https://cuk.ac.in/CUK-IQAC/pdf/Self%20Study%20Reports.pdf" @click="closeMenu"
+            <a href="https://cuk.ac.in/CUK-IQAC/pdf/SSR%202024.pdf" @click="closeMenu"
               class="block relative hover:text-white no-underline px-4 py-1 hover:before:scale-x-50 before:scale-x-0 before:origin-left before:content-[''] before:absolute before:bottom-0 before:left-5 before:right-0 before:h-0.5 before:bg-white before:transition-transform before:duration-300 before:ease-linear" target="_blank">
               Self Study Reports
             </a>

@@ -53,20 +53,23 @@
       return {
         committeeMembers: [
           // { id: 1, name: "Prof. Battu Satyanarayana", designation: "Hon'ble Vice Chancellor", iqacRole: "Chairperson", image: "https://cuk.ac.in/Academic/Images/bsatyanarayana.jpg" },
-          { id: 2, name: "Prof. Romet John", designation: "Dept. of Psychology", iqacRole: "IQAC Member", image: "https://www.cuk.ac.in/assets/cukimg/schools/psychology/John%20Sir.jpg" },
-          { id: 3, name: "Prof. N. Satyanarayana", designation: "Dept. of Life Sciences", iqacRole: "IQAC Member", image: "https://cuk.ac.in/Academic/Images/Prof.%20N%20Sathyanarayana%20Life%20Sci.jpg" },
-          { id: 4, name: "Prof. R.S. Hegadi", designation: "Dept. of Computer Science", iqacRole: "IQAC Member", image: "https://cuk.ac.in/Academic/Images/Dr.R.S.Hegadi.jpg" },
-          { id: 5, name: "Prof. Ramana D.V.", designation: "Dept. of Chemistry", iqacRole: "IQAC Member", image: "https://cuk.ac.in/Academic/Images/Venkata%20Ramana%20Doddi.jpg" },
-          { id: 6, name: "Dr. Shiva Kumar Belli", designation: "Dept. of Business Studies", iqacRole: "IQAC Member", image: "https://cuk.ac.in/Academic/Images/Dr.%20Shivkumar%20M.%20Belli.jpg" },
-          { id: 7, name: "Dr. Sandeep N", designation: "Dept. of Mathematics", iqacRole: "IQAC Member", image: "https://www.cuk.ac.in/assets/cukimg/schools/maths/Dr.N.Sandeep.jpg" },
-          { id: 8, name: "Dr. Babu N", designation: "Dept. of Geology", iqacRole: "IQAC Member", image: "https://www.cuk.ac.in/assets/cukimg/Dr.Babu%20N.jpg" },
-          { id: 9, name: "Dr. Akhilesh Mishra", designation: "Dept. of Education and training", iqacRole: "IQAC Member", image: "https://cuk.ac.in/Academic/Education/images/akhilesh%20Edu.jpg" },
-          { id: 10, name: "Prof. Thulasimala", designation: "Executive Council Member", iqacRole: "IQAC Member", image: "https://www.kswu.ac.in/kannada/Uploads/VC/VC-Prof.B.K.Tulasimala-Ksawuv.JPG" },
-          { id: 11, name: "Dr. Kota Sai Krishna", designation: "Controller of Examination", iqacRole: "IQAC Member", image: "https://cuk.ac.in/images/Shri%20Kota%20Sai%20Krishna%20CoE.jpeg" },
-          { id: 12, name: "Dr. Shaik Azaruddin", designation: "Deputy Registrar Adm. & Gov.", iqacRole: "IQAC Member", image: "https://www.cuk.ac.in/assets/images/Other%20Officers/Azhar.jpg" },
-          { id: 13, name: "Dr. P.S. Shankar ", designation: "Local Society", iqacRole: "IQAC Member", image: "src/assets/images.jpg" },
-          { id: 14, name: "Sri. Prakash Mankar", designation: "Industrialist", iqacRole: "IQAC Member", image: "https://randomuser.me/api/portraits/men/13.jpg" },
-          { id: 15, name: "Prof. Ganesh Pawar", designation: "Director IQAC Cell", iqacRole: "IQAC Member Convener", image: "https://cuk.ac.in/CUK-IQAC/img/director.jpeg" },
+          { id: 1, name: "Prof. M. Amarendra", designation: "Dept. of Electrical Engineering", iqacRole: "IQAC Convener", image: "https://cuk.ac.in/Academic/Images/Photo-Dr%20Am.jpg" },
+
+          { id: 2, name: "Dr. Nagaraj V Dharwadkar", designation: "Dept. of Computer Science", iqacRole: "IQAC Member", image: "/deputy-director.jpg" },
+          { id: 3, name: "Dr. Sandeep N", designation: "Dept. of Mathematics", iqacRole: "IQAC Member", image: "https://www.cuk.ac.in/assets/cukimg/schools/maths/Dr.N.Sandeep.jpg" },
+          { id: 4, name: "Prof. Romet John", designation: "Dept. of Psychology", iqacRole: "IQAC Member", image: "https://www.cuk.ac.in/assets/cukimg/schools/psychology/John%20Sir.jpg" },
+          { id: 5, name: "Prof. N. Satyanarayana", designation: "Dept. of Life Sciences", iqacRole: "IQAC Member", image: "https://cuk.ac.in/Academic/Images/Prof.%20N%20Sathyanarayana%20Life%20Sci.jpg" },
+          { id: 6, name: "Prof. R.S. Hegadi", designation: "Dept. of Computer Science", iqacRole: "IQAC Member", image: "https://cuk.ac.in/Academic/Images/Dr.R.S.Hegadi.jpg" },
+          { id: 7, name: "Prof. Ramana D.V.", designation: "Dept. of Chemistry", iqacRole: "IQAC Member", image: "https://cuk.ac.in/Academic/Images/Venkata%20Ramana%20Doddi.jpg" },
+          { id: 8, name: "Dr. Shiva Kumar Belli", designation: "Dept. of Business Studies", iqacRole: "IQAC Member", image: "https://cuk.ac.in/Academic/Images/Dr.%20Shivkumar%20M.%20Belli.jpg" },
+          
+          { id: 9, name: "Dr. Babu N", designation: "Dept. of Geology", iqacRole: "IQAC Member", image: "https://www.cuk.ac.in/assets/cukimg/Dr.Babu%20N.jpg" },
+          { id: 10, name: "Dr. Akhilesh Mishra", designation: "Dept. of Education and training", iqacRole: "IQAC Member", image: "https://cuk.ac.in/Academic/Education/images/akhilesh%20Edu.jpg" },
+          { id: 11, name: "Prof. Thulasimala", designation: "Executive Council Member", iqacRole: "IQAC Member", image: "https://www.kswu.ac.in/kannada/Uploads/VC/VC-Prof.B.K.Tulasimala-Ksawuv.JPG" },
+          { id: 12, name: "Dr. Kota Sai Krishna", designation: "Controller of Examination", iqacRole: "IQAC Member", image: "https://cuk.ac.in/images/Shri%20Kota%20Sai%20Krishna%20CoE.jpeg" },
+          { id: 13, name: "Dr. Shaik Azaruddin", designation: "Deputy Registrar Adm. & Gov.", iqacRole: "IQAC Member", image: "https://www.cuk.ac.in/assets/images/Other%20Officers/Azhar.jpg" },
+          { id: 14, name: "Dr. P.S. Shankar ", designation: "Local Society", iqacRole: "IQAC Member", image: "src/assets/images.jpg" },
+          { id: 15, name: "Sri. Prakash Mankar", designation: "Industrialist", iqacRole: "IQAC Member", image: "/user.png" },
           
         ]
       };
