@@ -33,15 +33,14 @@
         
         <div class="flex justify-center mt-4 sm:mt-6">
           <button
-            type="submit"
-            class="buttonDownload"
+            type="submit"            class="buttonDownload"
+            :disabled="uploading"
           >
-            Upload
+            {{ uploading ? 'Uploading...' : 'Upload' }}
           </button>
         </div>
-      </form>
-
-      <p v-if="errorMessage" class="text-red-500 text-sm mt-3 sm:mt-4">{{ errorMessage }}</p>
+      </form>      <p v-if="errorMessage" class="text-red-500 text-sm mt-3 sm:mt-4">{{ errorMessage }}</p>
+      <p v-if="successMessage" class="text-green-500 text-sm mt-3 sm:mt-4">{{ successMessage }}</p>
     </div>
   </div>
 </template>
@@ -53,9 +52,10 @@ export default {
   data() {
     return {
       title: '',
-      noticeDate: '',
-      file: null,
+      noticeDate: '',      file: null,
       errorMessage: '',
+      successMessage: '',
+      uploading: false,
       isAdmin: false,
     };
   },
@@ -74,23 +74,31 @@ export default {
         console.error('Error checking admin status:', error);
       }
     },
-    
-    handleFile(event) {
+      handleFile(event) {
       this.file = event.target.files[0];
     },
+      async uploadFile() {
+      try {
+        if (!this.title || !this.file || !this.noticeDate) {
+          this.errorMessage = 'All fields are required!';
+          return;
+        }
 
-    async uploadFile() {
-      if (!this.title || !this.file || !this.noticeDate) {
-        this.errorMessage = 'All fields are required!';
-        return;
-      }
-      this.errorMessage = '';
+        if (this.file.size > 10 * 1024 * 1024) { // 10MB limit
+          this.errorMessage = 'File size cannot exceed 10MB';
+          return;
+        }
 
-      const formData = new FormData();
-      formData.append('file', this.file);
-      formData.append('title', this.title);
-      formData.append('eventDate', this.noticeDate);
-        try {
+        const allowedTypes = ['application/pdf'];
+        if (!allowedTypes.includes(this.file.type)) {
+          this.errorMessage = 'Only PDF files are allowed';
+          return;
+        }
+
+        this.errorMessage = '';
+        this.successMessage = '';
+        this.uploading = true;
+
         console.log('Uploading file:', {
           title: this.title,
           date: this.noticeDate,
@@ -99,16 +107,23 @@ export default {
           fileType: this.file.type
         });
 
+        const formData = new FormData();
+        formData.append('file', this.file);
+        formData.append('title', this.title);
+        formData.append('eventDate', this.noticeDate);
+
         const token = sessionStorage.getItem('userToken');
         if (!token) {
           throw new Error('No authentication token found');
         }
-
+        
         const response = await axios.post(`${API_PATH}/api/files/upload`, formData, {
           headers: { 
-            Authorization: token,
+            'Authorization': token,
             'Content-Type': 'multipart/form-data'
           },
+          maxContentLength: Infinity,
+          maxBodyLength: Infinity,
           validateStatus: function (status) {
             return status < 500; // Handle any status less than 500
           }
@@ -116,18 +131,23 @@ export default {
 
         if (response.status === 200 || response.status === 201) {
           console.log('File uploaded successfully!', response.data);
-          alert('File uploaded successfully!');
-          // Clear form after successful upload
+          this.successMessage = 'Notice uploaded successfully! Waiting for admin approval.';
+          
+          // Clear form
           this.title = '';
           this.noticeDate = '';
           this.file = null;
-          this.$router.push('/notices');
+          const fileInput = document.querySelector('input[type="file"]');
+          if (fileInput) fileInput.value = '';
+          
+          setTimeout(() => {
+            this.$router.push('/notices');
+          }, 2000);
         } else {
           throw new Error(response.data.message || 'Upload failed');
         }
         
-      } catch (error) {
-        console.error('Upload error:', error);
+      } catch (error) {        console.error('Upload error:', error);
         const errorMessage = error.response?.data?.message 
           || error.message 
           || 'Failed to upload file. Please try again.';
@@ -138,6 +158,8 @@ export default {
           message: errorMessage
         });
         this.errorMessage = errorMessage;
+      } finally {
+        this.uploading = false;
       }
     },
   },

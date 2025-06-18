@@ -59,7 +59,7 @@
             </div>
             <div class="flex items-center gap-2">
               <button class="p-4 text-indigo-500 hover:text-white rounded-lg hover:bg-blue-600 transition-colors"
-                title="Download" @click="handleDownload(notice.id)">
+                title="Download" @click="handleView(notice.id)">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -149,54 +149,61 @@ export default {
       } else {
         this.$router.push("/upload");
       }  
-      }, 
-      async handleDownload(noticeId) {
-      if (!API_PATH) {
-        alert("API Path is not set properly!");
-        return;
-      } 
-      try {
-        console.log('Initiating download for notice ID:', noticeId);
-        const downloadUrl = `${API_PATH}/api/files/notices/download/${noticeId}`;
-        console.log('Download URL:', downloadUrl);
-        const response = await fetch(downloadUrl, {
-          headers: {
-            Authorization: sessionStorage.getItem("userToken")
-          }
-        });       
-        if (!response.ok) {
-          console.error('Download failed with status:', response.status);
-          const error = await response.json().catch(() => ({ message: 'Download failed' }));
-          throw new Error(error.message || 'Download failed');
+      },        async handleView(noticeId) {
+        if (!API_PATH) {
+          alert("API Path is not set properly!");
+          return;
         }
 
-        console.log('Response headers:', [...response.headers.entries()]);
-        // Get filename from Content-Disposition header
-        const contentDisposition = response.headers.get('Content-Disposition');
-        console.log('Content-Disposition:', contentDisposition);
-        let filename = this.notices.find(n => n.id === noticeId)?.title || 'download';
-
-        if (contentDisposition) {
-          const matches = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/.exec(contentDisposition);
-          if (matches != null && matches[1]) {
-            filename = matches[1].replace(/['"]/g, '');
+        try {
+          const notice = this.notices.find(n => n.id === noticeId);
+          if (!notice) {
+            throw new Error('Notice not found');
           }
-        }
 
-        const blob = await response.blob();
-        const url = window.URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = filename;
-        document.body.appendChild(link);
-        link.click();
-        link.remove();
-        window.URL.revokeObjectURL(url);
-      } catch (error) {
-        console.error('Download error:', error);
-        alert(error.message || 'Failed to download file. Please try again.');
+          console.log('Initiating view for notice:', notice);
+          const viewUrl = `${API_PATH}/api/files/file/${noticeId}`;
+          
+          const response = await fetch(viewUrl, {
+            headers: {
+              'Authorization': `${sessionStorage.getItem("userToken")}`,
+              'Accept': 'application/pdf'
+            },
+            credentials: 'include'
+          });
+
+          if (!response.ok) {
+            throw new Error(response.status === 404 ? 'File not found' : 'Failed to view file');
+          }
+
+          // Get content type from response
+          const contentType = response.headers.get('Content-Type');
+          console.log('Content Type:', contentType);
+
+          const blob = await response.blob();
+          const fileURL = URL.createObjectURL(blob);
+
+          // Open in new tab
+          const newWindow = window.open('', '_blank');
+          if (newWindow) {
+            newWindow.location.href = fileURL;
+          } else {
+            // If popup was blocked, create an iframe
+            const iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            document.body.appendChild(iframe);
+            iframe.src = fileURL;
+          }
+
+          // Clean up the object URL after a delay
+          setTimeout(() => URL.revokeObjectURL(fileURL), 1000);
+
+        } catch (error) {
+          console.error('View error:', error);
+          alert(error.message || 'Failed to open file. Please try again.');
+        }
       }
-    },
+,
     async deleteNotice(noticeId) {
       if (confirm("Are you sure you want to delete this notice?")) {
         try {
