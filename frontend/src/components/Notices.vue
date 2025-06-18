@@ -39,7 +39,7 @@
       </div>
 
       <!-- Notices List -->
-      <div v-else class="divide-y divide-gray-100">
+      <div v-else class="divide-y divide-gray-100 max-h-screen overflow-y-auto">
         <div v-for="notice in notices" :key="notice.id" class="p-6 hover:bg-gray-50 transition-colors">
           <div class="flex items-center justify-between gap-4">
             <div class="flex-1">
@@ -182,16 +182,22 @@ export default {
           }
 
           // Update loading state
-          this.notices[noticeIndex] = { ...this.notices[noticeIndex], loading: true };
-
-          console.log('Initiating view for notice:', this.notices[noticeIndex]);
+          this.notices[noticeIndex] = { ...this.notices[noticeIndex], loading: true };          const notice = this.notices[noticeIndex];
+          console.log('Initiating view for notice:', notice);
+          
           const viewUrl = `${API_PATH}/api/files/file/${noticeId}`;
+          const headers = {
+            'Authorization': `${sessionStorage.getItem("userToken")}`,
+            'Accept': 'application/pdf'
+          };
+          
+          // Add admin header for pending notices
+          if (this.userRole === 'admin' && notice.status === 2) {
+            headers['X-Admin-Access'] = 'true';
+          }
           
           const response = await fetch(viewUrl, {
-            headers: {
-              'Authorization': `${sessionStorage.getItem("userToken")}`,
-              'Accept': 'application/pdf'
-            },
+            headers,
             credentials: 'include'
           });
 
@@ -264,15 +270,21 @@ export default {
         }
 
         // Update loading state
-        this.notices[noticeIndex] = { ...this.notices[noticeIndex], loading: true };
-
-        console.log('Initiating download for notice:', this.notices[noticeIndex]);
+        this.notices[noticeIndex] = { ...this.notices[noticeIndex], loading: true };        const notice = this.notices[noticeIndex];
+        console.log('Initiating download for notice:', notice);
         const downloadUrl = `${API_PATH}/api/files/notices/download/${noticeId}`;
 
+        const headers = {
+          'Authorization': `${sessionStorage.getItem("userToken")}`
+        };
+
+        // Add admin header for pending notices
+        if (this.userRole === 'admin' && notice.status === 2) {
+          headers['X-Admin-Access'] = 'true';
+        }
+
         const response = await fetch(downloadUrl, {
-          headers: {
-            'Authorization': `${sessionStorage.getItem("userToken")}`
-          },
+          headers,
           credentials: 'include'
         });
 
