@@ -45,24 +45,40 @@
                 </svg>
                 <span>{{ formatDate(report.date) }}</span>
               </div>
-            </div>
-
+            </div>         
             <div class="flex items-center gap-2">
-              <a
-                :href="API_PATH ? `${API_PATH}/api/mom/download/${report.id}` : '#'"
-                class="p-4 text-indigo-500 hover:text-white rounded-lg hover:bg-blue-500"
+              <!-- View Button -->
+              <button
+                class="p-4 text-blue-500 hover:text-white rounded-lg hover:bg-blue-600 transition-colors"
+                :class="{ 'opacity-50 cursor-not-allowed': report.loading }"
+                :disabled="report.loading"
+                title="View"
+                @click="handleView(report.id)"
+              >
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                </svg>
+              </button>
+
+              <!-- Download Button -->
+              <button
+                class="p-4 text-indigo-500 hover:text-white rounded-lg hover:bg-indigo-600 transition-colors"
+                :class="{ 'opacity-50 cursor-not-allowed': report.loading }"
+                :disabled="report.loading"
                 title="Download"
                 @click="handleDownload(report.id)"
               >
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
                 </svg>
-              </a>
+              </button>
 
+              <!-- Delete Button -->
               <button 
                 v-if="isAdmin"
                 @click="deleteReport(report.id)"
-                class="p-4 text-gray-500 hover:text-white rounded-lg hover:bg-red-500"
+                class="p-4 text-gray-500 hover:text-white rounded-lg hover:bg-red-500 transition-colors"
                 title="Delete"
               >
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -107,7 +123,10 @@ methods: {
   async fetchReports() {
     try {
       const response = await axios.get(`${API_PATH}/api/mom/reports`);
-      this.reports = response.data
+      this.reports = response.data.map(report => ({
+        ...report,
+        loading: false
+      }));
     } catch (error) {
       console.error('❌ Error fetching reports:', error);
       this.errorMessage = 'Failed to load reports.';
@@ -115,14 +134,130 @@ methods: {
       this.loading = false;
     }
   },
-  async handleDownload(noticeId) {
-  if (!API_PATH) {
-    alert("API Path is not set properly!");
-    return;
-  }
-  const downloadUrl = `${API_PATH}/api/mom/download/${noticeId}`;
-  window.location.href = downloadUrl;
-},
+
+  async handleView(reportId) {
+    if (!API_PATH) {
+      alert("API Path is not set properly!");
+      return;
+    }
+
+    try {
+      let reportIndex = this.reports.findIndex(r => r.id === reportId);
+      if (reportIndex === -1) {
+        throw new Error('Report not found');
+      }
+
+      // Update loading state
+      this.reports[reportIndex] = { ...this.reports[reportIndex], loading: true };      const response = await fetch(`${API_PATH}/api/mom/download/${reportId}`, {
+        headers: {
+          'Authorization': sessionStorage.getItem("userToken")
+        },
+        credentials: 'include'
+      });
+
+      if (!response.ok) {
+        throw new Error(response.status === 404 ? 'File not found' : 'Failed to view file');
+      }      // Get content type
+      const contentType = response.headers.get('Content-Type');
+      console.log('Content Type:', contentType);
+
+      const blob = await response.blob();
+      const fileURL = URL.createObjectURL(blob);
+
+      try {
+        // Try to open in a new tab first
+        window.open(fileURL, '_blank');
+      } catch (popupError) {
+        console.warn('Popup blocked, trying alternative method...', popupError);
+        
+        // If popup blocked or failed, try embedding in the page
+        const embedURL = fileURL;
+        const newTab = window.open('', '_blank');
+        if (newTab) {
+          newTab.document.write(`
+            <html>
+              <head>
+                <title>${this.reports[reportIndex].title}</title>
+              </head>
+              <body style="margin:0;padding:0;">
+                <embed width="100%" height="100%" src="${embedURL}" type="application/pdf">
+              </body>
+            </html>
+          `);
+          newTab.document.close();
+        } else {
+          // If both methods fail, try downloading instead
+          const link = document.createElement('a');
+          link.href = fileURL;
+          link.download = this.reports[reportIndex].title + '.pdf';
+          document.body.appendChild(link);
+          link.click();
+          link.remove();
+        }
+      }
+
+      // Clean up the object URL after a delay to ensure it's loaded
+      setTimeout(() => {
+        URL.revokeObjectURL(fileURL);
+      }, 3000);
+
+    } catch (error) {
+      console.error('View error:', error);
+      alert(error.message || 'Failed to open file. Please try again.');
+    } finally {
+      let reportIndex = this.reports.findIndex(r => r.id === reportId);
+      if (reportIndex !== -1) {
+        this.reports[reportIndex] = { ...this.reports[reportIndex], loading: false };
+      }
+    }
+  },
+
+  async handleDownload(reportId) {
+    if (!API_PATH) {
+      alert("API Path is not set properly!");
+      return;
+    }
+
+    try {
+      let reportIndex = this.reports.findIndex(r => r.id === reportId);
+      if (reportIndex === -1) {
+        throw new Error('Report not found');
+      }
+
+      // Update loading state
+      this.reports[reportIndex] = { ...this.reports[reportIndex], loading: true };
+
+      const response = await fetch(`${API_PATH}/api/mom/download/${reportId}`, {
+        headers: {
+          'Authorization': `${sessionStorage.getItem("userToken")}`
+        },
+        credentials: 'include'
+      });
+
+      if (!response.ok) {
+        throw new Error(response.status === 404 ? 'File not found' : 'Download failed');
+      }
+
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = this.reports[reportIndex].title + '.pdf';
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      window.URL.revokeObjectURL(url);
+
+    } catch (error) {
+      console.error('Download error:', error);
+      alert(error.message || 'Failed to download file. Please try again.');
+    } finally {
+      let reportIndex = this.reports.findIndex(r => r.id === reportId);
+      if (reportIndex !== -1) {
+        this.reports[reportIndex] = { ...this.reports[reportIndex], loading: false };
+      }
+    }
+  },
   async deleteReport(id) {
     if (!confirm('Are you sure you want to delete this file?')) return;
 
