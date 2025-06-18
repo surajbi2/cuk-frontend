@@ -30,7 +30,8 @@
         <p
           class="animate-marquee text-white font-semibold text-base sm:text-lg tracking-wide flex items-center gap-2 sm:gap-4 min-w-full ">
           <img src="/announcement.svg" alt="Announcement" class="h-5 w-5 sm:h-6 sm:w-6 inline-block" />
-          Important: The new IQAC website will be live soon! Stay tuned for updates and new features.
+          <a href="https://cuk.ac.in/CUK-IQAC/Notice/ASAR%2017.06.25.pdf" target="_blank" class="hover:underline">
+            Submission of Annual Self - Appraisal Report for the Academic year 2024-2025</a>
         </p>
       </div>
     </div>
@@ -47,15 +48,15 @@
             <div
               class="absolute inset-0 bg-gradient-to-br from-indigo-50/50 to-white/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             </div>
-            <div class="relative flex flex-col items-center space-y-2">
+            <div class="relative flex flex-col items-center space-y-1">
               <div class="relative w-44 h-44 rounded-full overflow-hidden border-4 border-white shadow-lg">
                 <img src="/director.jpg" alt="Director" class="w-full h-full object-fill" />
                 <div class="absolute inset-0 bg-gradient-to-t from-indigo-900/30"></div>
               </div>
-              <div class="text-center space-y-2">
-                <h3 class="text-2xl font-bold text-gray-900">Prof. M. Amarendra</h3>
+              <div class="text-center space-y-1">
+                <h3 class="text-lg font-bold text-gray-900">Prof. M. Amarendra</h3>
                 <div
-                  class="inline-flex items-center gap-2 text-indigo-600 font-medium px-4 py-1.5 rounded-full bg-indigo-50">
+                  class="inline-flex items-center gap-2 text-indigo-600 font-medium px-4 py-1 rounded-full bg-indigo-50">
 
                   <span>Director</span>
                 </div>
@@ -69,15 +70,15 @@
             <div
               class="absolute inset-0 bg-gradient-to-br from-indigo-50/50 to-white/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             </div>
-            <div class="relative flex flex-col items-center space-y-2">
+            <div class="relative flex flex-col items-center space-y-1">
               <div class="relative w-44 h-44 rounded-full overflow-hidden border-4 border-white shadow-lg">
                 <img src="/deputy-director.jpg" alt="Deputy Director" class="w-full h-full object-fill" />
                 <div class="absolute inset-0 bg-gradient-to-t from-indigo-900/30"></div>
               </div>
               <div class="text-center space-y-1">
-                <h3 class="text-2xl font-bold text-gray-900">Dr. Nagaraj V Dharwadkar</h3>
+                <h3 class="text-lg font-bold text-gray-900">Dr. Nagaraj V Dharwadkar</h3>
                 <div
-                  class="inline-flex items-center gap-2 text-indigo-600 font-medium px-4 py-1.5 rounded-full bg-indigo-50">
+                  class="inline-flex items-center gap-2 text-indigo-600 font-medium px-4 py-1 rounded-full bg-indigo-50">
 
                   <span>Deputy Director</span>
                 </div>
@@ -90,16 +91,16 @@
             <div
               class="absolute inset-0 bg-gradient-to-br from-indigo-50/50 to-white/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             </div>
-            <div class="relative flex flex-col items-center space-y-6">
+            <div class="relative flex flex-col items-center space-y-1">
               <div class="relative w-44 h-44 rounded-full overflow-hidden border-4 border-white shadow-lg">
                 <img src="/deputy-director-2.jpg" alt="Deputy Director" class="w-full h-full object-cover" />
                 <div class="absolute inset-0 bg-gradient-to-t from-indigo-900/30"></div>
               </div>
-              <div class="text-center space-y-2">
-                <h3 class="text-2xl font-bold text-gray-900">Dr. N Sandeep
+              <div class="text-center space-y-1">
+                <h3 class="text-lg font-bold text-gray-900">Dr. N Sandeep
                 </h3>
                 <div
-                  class="inline-flex items-center gap-2 text-indigo-600 font-medium px-4 py-1.5 rounded-full bg-indigo-50">
+                  class="inline-flex items-center gap-2 text-indigo-600 font-medium px-4 py-1 rounded-full bg-indigo-50">
 
                   <span>Deputy Director</span>
                 </div>

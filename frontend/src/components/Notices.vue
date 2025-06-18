@@ -148,7 +148,9 @@ export default {
         this.$router.push("/login");
       } else {
         this.$router.push("/upload");
-      }    }, async handleDownload(noticeId) {
+      }  
+      }, 
+      async handleDownload(noticeId) {
       if (!API_PATH) {
         alert("API Path is not set properly!");
         return;
@@ -161,7 +163,8 @@ export default {
           headers: {
             Authorization: sessionStorage.getItem("userToken")
           }
-        });        if (!response.ok) {
+        });       
+        if (!response.ok) {
           console.error('Download failed with status:', response.status);
           const error = await response.json().catch(() => ({ message: 'Download failed' }));
           throw new Error(error.message || 'Download failed');

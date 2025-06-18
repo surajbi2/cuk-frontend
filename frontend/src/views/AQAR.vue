@@ -38,6 +38,10 @@ export default {
   data() {
     return {
       aqarReports: [
+      {
+          year: '2023-24',
+          link: 'https://www.cuk.ac.in/NAAC2022/AQAR/AQAR%202023-2024.pdf'
+        },
         {
           year: '2022-23',
           link: 'https://www.cuk.ac.in/NAAC2022/AQAR/AQAR%202022-2023.pdf'
