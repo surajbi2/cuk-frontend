@@ -32,10 +32,14 @@
 
           </div>
         </div>
+      </div>      <!-- Loading State -->
+      <div v-if="loading" class="p-12 text-center">
+        <div class="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-indigo-600"></div>
+        <p class="mt-2 text-gray-600">Loading notices...</p>
       </div>
 
       <!-- Notices List -->
-      <div class="divide-y divide-gray-100">
+      <div v-else class="divide-y divide-gray-100">
         <div v-for="notice in notices" :key="notice.id" class="p-6 hover:bg-gray-50 transition-colors">
           <div class="flex items-center justify-between gap-4">
             <div class="flex-1">
@@ -43,26 +47,39 @@
               <div class="flex flex-col gap-2 text-sm text-gray-500">
                 <div class="flex items-center gap-1.5">
                   <img src="/edit_calendar.png" alt="calendar" style="color: black;">
-                  <!-- <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                  </svg> -->
                   <span class="font-bold">notice_date:</span> {{ formatDate(notice.event_date) }}
                 </div>
                 <div class="flex items-center gap-1.5">
                   <img src="/calendar_month.png" alt="calendar">
-                  <!-- <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                  </svg> -->
                   <span class="font-bold">uploaded_at:</span> {{ formatDate(notice.uploaded_at) }}
                 </div>
               </div>
             </div>
             <div class="flex items-center gap-2">
-              <button class="p-4 text-indigo-500 hover:text-white rounded-lg hover:bg-blue-600 transition-colors"
-                title="Download" @click="handleView(notice.id)">
+              <!-- View Button -->
+              <button 
+                class="p-4 text-blue-500 hover:text-white rounded-lg hover:bg-blue-600 transition-colors"
+                :class="{ 'opacity-50 cursor-not-allowed': notice.loading }"
+                :disabled="notice.loading"
+                title="View" 
+                @click="handleView(notice.id)"
+              >
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                </svg>
+              </button>
+
+              <!-- Download Button -->
+              <button 
+                class="p-4 text-indigo-500 hover:text-white rounded-lg hover:bg-indigo-600 transition-colors"
+                :class="{ 'opacity-50 cursor-not-allowed': notice.loading }"
+                :disabled="notice.loading"
+                title="Download" 
+                @click="handleDownload(notice.id)"
+              >
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
                 </svg>
               </button>
 
@@ -96,18 +113,20 @@
             </div>
           </div>
         </div>
-      </div>
-
-      <!-- Empty State -->
-      <div v-if="!notices.length" class="p-12 text-center text-gray-500">
+      </div>      <!-- Empty State -->
+      <div v-if="!loading && !notices.length" class="p-12 text-center text-gray-500">
         <div class="mb-4">
           <svg class="w-12 h-12 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
               d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
         </div>
-        <p class="text-gray-600">No notices available</p>
+        <p v-if="error" class="text-red-600">{{ error }}</p>
+        <p v-else class="text-gray-600">No notices available</p>
       </div>
+
+      <!-- Loading State -->
+      
     </div>
   </div>
 </template>
@@ -117,11 +136,12 @@ import { API_PATH } from '../path/apiPath';
 
 export default {
   data() {
-    return {
-      API_PATH,
+    return {      API_PATH,
       notices: [],
       userRole: "",
       showPending: false, // Admin can toggle between pending and approved notices
+      loading: true, // Loading state for notices
+      error: null
     };
   },
 
@@ -149,19 +169,22 @@ export default {
       } else {
         this.$router.push("/upload");
       }  
-      },        async handleView(noticeId) {
+      },    async handleView(noticeId) {
         if (!API_PATH) {
           alert("API Path is not set properly!");
           return;
         }
 
         try {
-          const notice = this.notices.find(n => n.id === noticeId);
-          if (!notice) {
+          let noticeIndex = this.notices.findIndex(n => n.id === noticeId);
+          if (noticeIndex === -1) {
             throw new Error('Notice not found');
           }
 
-          console.log('Initiating view for notice:', notice);
+          // Update loading state
+          this.notices[noticeIndex] = { ...this.notices[noticeIndex], loading: true };
+
+          console.log('Initiating view for notice:', this.notices[noticeIndex]);
           const viewUrl = `${API_PATH}/api/files/file/${noticeId}`;
           
           const response = await fetch(viewUrl, {
@@ -196,11 +219,15 @@ export default {
           }
 
           // Clean up the object URL after a delay
-          setTimeout(() => URL.revokeObjectURL(fileURL), 1000);
-
-        } catch (error) {
+          setTimeout(() => URL.revokeObjectURL(fileURL), 1000);        } catch (error) {
           console.error('View error:', error);
           alert(error.message || 'Failed to open file. Please try again.');
+        } finally {
+          // Update loading state back to false
+          let noticeIndex = this.notices.findIndex(n => n.id === noticeId);
+          if (noticeIndex !== -1) {
+            this.notices[noticeIndex] = { ...this.notices[noticeIndex], loading: false };
+          }
         }
       }
 ,
@@ -224,9 +251,61 @@ export default {
           console.error("Error deleting notice:", error);
         }
       }
+    },    async handleDownload(noticeId) {
+      if (!API_PATH) {
+        alert("API Path is not set properly!");
+        return;
+      }
+
+      try {
+        let noticeIndex = this.notices.findIndex(n => n.id === noticeId);
+        if (noticeIndex === -1) {
+          throw new Error('Notice not found');
+        }
+
+        // Update loading state
+        this.notices[noticeIndex] = { ...this.notices[noticeIndex], loading: true };
+
+        console.log('Initiating download for notice:', this.notices[noticeIndex]);
+        const downloadUrl = `${API_PATH}/api/files/notices/download/${noticeId}`;
+
+        const response = await fetch(downloadUrl, {
+          headers: {
+            'Authorization': `${sessionStorage.getItem("userToken")}`
+          },
+          credentials: 'include'
+        });
+
+        if (!response.ok) {
+          throw new Error(response.status === 404 ? 'File not found' : 'Download failed');
+        }
+
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = this.notices[noticeIndex].title + '.pdf';
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        window.URL.revokeObjectURL(url);
+
+      } catch (error) {
+        console.error('Download error:', error);
+        alert(error.message || 'Failed to download file. Please try again.');
+      } finally {
+        // Update loading state back to false
+        let noticeIndex = this.notices.findIndex(n => n.id === noticeId);
+        if (noticeIndex !== -1) {
+          this.notices[noticeIndex] = { ...this.notices[noticeIndex], loading: false };
+        }
+      }
     },
 
     async fetchNotices() {
+      this.loading = true;
+      this.error = null;
+      
       try {
         const endpoint = this.showPending
           ? `${API_PATH}/api/files/notices/pending`
@@ -242,7 +321,7 @@ export default {
 
         this.notices = await response.json();
         console.log("Fetched Notices:", this.notices); // Debugging log
-
+        this.loading = false;
       } catch (error) {
         console.error("Error fetching notices:", error);
       }
