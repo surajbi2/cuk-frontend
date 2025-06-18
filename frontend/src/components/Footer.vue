@@ -1,17 +1,19 @@
 <template>
-  <footer class="bg-gradient-to-b from-gray-800 to-gray-900 text-gray-300 py-12 relative w-full border-t border-gray-700">
+  <footer
+    class="bg-gradient-to-b from-gray-800 to-gray-900 text-gray-300 py-12 relative w-full border-t border-gray-700">
     <div class="max-w-7xl mx-auto md:px-4 px-6">
       <div class="grid grid-cols-2 md:grid-cols-3 gap-8 mb-4">
         <!-- Important Links -->
         <div class="space-y-4">
-          <h3 class="text-xl font-bold text-white mb-4 relative pb-2 after:absolute after:bottom-0 after:left-0 after:w-12 after:h-0.5 after:bg-indigo-500">
+          <h3
+            class="text-xl font-bold text-white mb-4 relative pb-2 after:absolute after:bottom-0 after:left-0 after:w-12 after:h-0.5 after:bg-indigo-500">
             Important Links
           </h3>
           <ul class="space-y-3">
-            <li v-for="(link, index) in importantLinks" :key="index" 
-                class="group transform transition-all duration-300 hover:translate-x-2">
-              <a :href="link.url" target="_blank" 
-                 class="flex items-center gap-2 text-gray-400 hover:text-white before:content-['→'] before:font-bold before:text-transparent before:group-hover:text-indigo-400 before:transition-all before:duration-300">
+            <li v-for="(link, index) in importantLinks" :key="index"
+              class="group transform transition-all duration-300 hover:translate-x-2">
+              <a :href="link.url" target="_blank"
+                class="flex items-center gap-2 text-gray-400 hover:text-white before:content-['→'] before:font-bold before:text-transparent before:group-hover:text-indigo-400 before:transition-all before:duration-300">
                 <span class="truncate">{{ link.name }}</span>
               </a>
             </li>
@@ -20,14 +22,15 @@
 
         <!-- Explore -->
         <div class="space-y-4">
-          <h3 class="text-xl font-bold text-white mb-4 relative pb-2 after:absolute after:bottom-0 after:left-0 after:w-12 after:h-0.5 after:bg-indigo-500">
+          <h3
+            class="text-xl font-bold text-white mb-4 relative pb-2 after:absolute after:bottom-0 after:left-0 after:w-12 after:h-0.5 after:bg-indigo-500">
             Explore
           </h3>
           <ul class="space-y-3">
-            <li v-for="(link, index) in exploreLinks" :key="index" 
-                class="group transform transition-all duration-300 hover:translate-x-2">
-              <a :href="link.url" target="_blank" 
-                 class="flex items-center gap-2 text-gray-400 hover:text-white before:content-['→'] before:font-bold before:text-transparent before:group-hover:text-indigo-400 before:transition-all before:duration-300">
+            <li v-for="(link, index) in exploreLinks" :key="index"
+              class="group transform transition-all duration-300 hover:translate-x-2">
+              <a :href="link.url" target="_blank"
+                class="flex items-center gap-2 text-gray-400 hover:text-white before:content-['→'] before:font-bold before:text-transparent before:group-hover:text-indigo-400 before:transition-all before:duration-300">
                 <span class="truncate">{{ link.name }}</span>
               </a>
             </li>
@@ -37,41 +40,64 @@
         <!-- Social & Auth -->
         <div class="space-y-6">
           <div class="space-y-4">
-            <h3 class="text-xl font-bold text-white mb-4 relative pb-2 after:absolute after:bottom-0 after:left-0 after:w-12 after:h-0.5 after:bg-indigo-500">
+            <h3
+              class="text-xl font-bold text-white mb-4 relative pb-2 after:absolute after:bottom-0 after:left-0 after:w-12 after:h-0.5 after:bg-indigo-500">
               Connect With Us
             </h3>
             <div class="flex space-x-4">
-              <a v-for="(social, index) in socialLinks" :key="index" 
-                 :href="social.url" target="_blank"
-                 class="p-2.5 rounded-lg bg-gray-700 hover:bg-indigo-600 transition-all duration-300 transform hover:-translate-y-1">
+              <a v-for="(social, index) in socialLinks" :key="index" :href="social.url" target="_blank"
+                class="p-2.5 rounded-lg bg-gray-700 hover:bg-indigo-600 transition-all duration-300 transform hover:-translate-y-1">
                 <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                  <path :d="social.icon"/>
+                  <path :d="social.icon" />
                 </svg>
               </a>
             </div>
           </div>
 
-          <div @click="handleAuth" 
-               class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 rounded-xl cursor-pointer transform transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-indigo-500/20">
-            <span v-if="isLoggedIn" class="text-sm font-medium">
-              <div class="flex items-center gap-2">
+          <div @click="handleAuth"
+            class="relative inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-bl from-indigo-900 via-indigo-400 to-indigo-900 hover:from-indigo-700 hover:to-indigo-800 rounded-2xl cursor-pointer transition-all duration-300 ease-in-out transform hover:scale-105 shadow-xl hover:shadow-purple-500/30 ring-1 ring-white/10">
+            <!-- Ripple Glow Background -->
+            <span
+              class="absolute inset-0 rounded-2xl opacity-20 blur-md pointer-events-none animate-pulse bg-gradient-to-b from-gray-900 via-purple-900 to-violet-600"></span>
 
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f7f7f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-out-icon lucide-log-out"><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/></svg>
+            <!-- Icon and Text -->
+            <span class="relative flex items-center gap-2 text-white font-semibold text-sm tracking-wide">
+              <template v-if="isLoggedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="lucide lucide-log-out-icon text-white">
+                  <path d="m16 17 5-5-5-5" />
+                  <path d="M21 12H9" />
+                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                </svg>
                 Logout
-              </div>
-              </span>
-                <span v-else class="text-sm font-medium">🔒 Secure Login</span>
+              </template>
+              <template v-else>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="lucide lucide-log-in-icon lucide-log-in">
+                  <path d="m10 17 5-5-5-5" />
+                  <path d="M15 12H3" />
+                  <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                </svg>
+                Login
+              </template>
+            </span>
           </div>
+
         </div>
       </div>
 
       <!-- Copyright -->
       <div class="border-t border-gray-700 pt-4 text-center">
         <p class="text-md text-gray-500 leading-relaxed">
-          © 2024 All Rights Reserved. <strong>Central University of Karnataka</strong>, Aland Road, Kadaganchi Kalaburagi-585367, India
+          © 2024 All Rights Reserved. <strong>Central University of Karnataka</strong>, Aland Road, Kadaganchi
+          Kalaburagi-585367, India
         </p>
         <p class="text-xs text-gray-500 leading-relaxed">
-          A site developed by <strong>Ramagiri Suraj Kumar </strong> | MCA 2023-25 | School of Computer Science | Maintained by <strong>System Analyst</strong> Central University of Karnataka.
+          A site developed by <strong>Ramagiri Suraj Kumar </strong> | MCA 2023-25 | School of Computer Science |
+          Maintained
+          by <strong>System Analyst</strong> Central University of Karnataka.
         </p>
       </div>
     </div>
@@ -105,21 +131,21 @@ export default {
   created() { this.checkAuth(); },
   methods: {
     checkAuth() {
-  const token = sessionStorage.getItem('userToken');
-  this.isLoggedIn = !!token;
-},    
-handleAuth() {
-  if (this.isLoggedIn) {
-    // Logout process
-    sessionStorage.removeItem('userToken');
-    this.isLoggedIn = false;
-    this.$router.push('/');
-  } else {
-    // Redirect to login page
-    this.$router.push('/login');
-    this.isLoggedIn = true;
-  }
-}
+      const token = sessionStorage.getItem('userToken');
+      this.isLoggedIn = !!token;
+    },
+    handleAuth() {
+      if (this.isLoggedIn) {
+        // Logout process
+        sessionStorage.removeItem('userToken');
+        this.isLoggedIn = false;
+        this.$router.push('/');
+      } else {
+        // Redirect to login page
+        this.$router.push('/login');
+        this.isLoggedIn = true;
+      }
+    }
   }
 };
 </script>
@@ -147,7 +173,7 @@ handleAuth() {
     grid-template-columns: 1fr;
     gap: 2.5rem;
   }
-  
+
   .text-xl {
     font-size: 1.125rem;
   }
