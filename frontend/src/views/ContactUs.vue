@@ -63,7 +63,7 @@
             </div>
   
 
-            <div class="flex items-center">
+            <!-- <div class="flex items-center">
               <span class="text-[#d8315b]">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -81,7 +81,7 @@
                 </svg>
               </span>
               <p class="ml-3 text-gray-600">+91 6360034820</p>
-            </div>
+            </div> -->
   
 
             <div class="flex items-center">
@@ -103,7 +103,7 @@
               </span>
               <div class="ml-3 text-gray-600">
                 <p>iqac@cuk.ac.in</p>
-                <p>amarendra@cuk.ac.in</p>
+                <p>iqacoffice@cuk.ac.in</p>
               </div>
             </div>
           </div>
