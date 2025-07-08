@@ -1,5 +1,42 @@
 <template>
-  <div class="nirf-container">
+  <div class="md:flex-row flex flex-col w-full justify-evenly my-2">
+    
+    <div class="w-full lg:w-[25%] h-[50%] md:mt-32">
+          <div
+            class="bg-white rounded-2xl p-2 shadow-xl hover:shadow-2xl transition-all duration-300 group relative overflow-hidden">
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-indigo-50/50 to-white/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            </div>
+            <div class="relative flex flex-col items-center space-y-1">
+              <div class="relative w-44 h-44 rounded-full overflow-hidden border-4 border-white shadow-lg">
+                <img src="/gururaj.jpg" alt="Coordinator" class="w-full h-full object-fill" />
+                <div class="absolute inset-0 bg-gradient-to-t from-indigo-900/30"></div>
+              </div>
+              <div class="text-center space-y-1">
+                <h3 class="text-lg font-bold text-gray-900">Dr. Gururaj Mukarambi</h3>
+                <div
+                  class="inline-flex flex-col items-center text-indigo-600 font-medium px-4 py-1 rounded-full bg-indigo-50">
+
+                  <span>Coordinator</span>
+                  <!-- <span>&</span> -->
+                  <!-- <span>Nodal Officer of India Today Ranking of CUK</span> -->
+                </div>
+                <p>&</p>
+                <div
+                  class="inline-flex flex-col items-center text-indigo-600 font-medium px-4 py-1 rounded-full bg-indigo-50">
+
+                  <!-- <span>Coordinator</span> -->
+                  <!-- <span>&</span> -->
+                  <span>Nodal Officer of India Today Ranking of CUK</span>
+                </div>
+                <p class="text-gray-600">Dept. of Computer Science</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+  
+  <div class="nirf-container md:w-[60%] w-full ">
     <div class="nirf-header">
       <svg class="document-icon" viewBox="0 0 24 24" fill="white" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
         <path d="M14 2.25V7H18.75M18 21H6C4.343 21 3 19.657 3 18V6C3 4.343 4.343 3 6 3H12.172C12.702 3 13.211 3.211 13.586 3.586L18.414 8.414C18.789 8.789 19 9.298 19 9.828V18C19 19.657 17.657 21 16 21Z"/>
@@ -29,6 +66,7 @@
         </div>
       </a>
     </div>
+  </div>
   </div>
 </template>
 
@@ -97,8 +135,8 @@ export default {
   padding: 2rem;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
   backdrop-filter: blur(12px);
-  max-width: 1200px;
-  margin: 2rem auto;
+  
+
 }
 
 .nirf-header {
