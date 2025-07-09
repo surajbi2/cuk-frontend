@@ -91,7 +91,7 @@
       <!-- Copyright -->
       <div class="border-t border-gray-700 pt-4 text-center">
         <p class="text-md text-gray-500 leading-relaxed">
-          © 2024 All Rights Reserved. <strong>Central University of Karnataka</strong>, Aland Road, Kadaganchi
+          © 2025 All Rights Reserved. <strong>Central University of Karnataka</strong>, Aland Road, Kadaganchi
           Kalaburagi-585367, India
         </p>
         <p class="text-xs text-gray-500 leading-relaxed">

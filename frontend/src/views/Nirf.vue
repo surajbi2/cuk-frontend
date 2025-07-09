@@ -23,7 +23,7 @@
                 </div>
                 <p class="mt-0">&</p>
                 <div
-                  class="inline-flex flex-col items-center text-indigo-600 font-medium px-4 py-1 rounded-full bg-indigo-50">
+                  class="inline-flex flex-col items-center text-indigo-600 font-medium px-2 py-1 rounded-full bg-indigo-50">
 
                   <!-- <span>Coordinator</span> -->
                   <!-- <span>&</span> -->
