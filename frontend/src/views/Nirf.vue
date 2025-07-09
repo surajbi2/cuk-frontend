@@ -1,7 +1,7 @@
 <template>
   <div class="md:flex-row flex flex-col w-full justify-evenly my-2">
     
-    <div class="w-full lg:w-[25%] h-[50%] md:mt-32">
+    <div class="w-full lg:w-[20%] h-[40%] md:mt-20">
           <div
             class="bg-white rounded-2xl p-2 shadow-xl hover:shadow-2xl transition-all duration-300 group relative overflow-hidden">
             <div
@@ -12,22 +12,22 @@
                 <img src="/gururaj.jpg" alt="Coordinator" class="w-full h-full object-fill" />
                 <div class="absolute inset-0 bg-gradient-to-t from-indigo-900/30"></div>
               </div>
-              <div class="text-center space-y-1">
+              <div class="text-center ">
                 <h3 class="text-lg font-bold text-gray-900">Dr. Gururaj Mukarambi</h3>
                 <div
                   class="inline-flex flex-col items-center text-indigo-600 font-medium px-4 py-1 rounded-full bg-indigo-50">
 
-                  <span>Coordinator</span>
+                  <span class="text-sm">Coordinator</span>
                   <!-- <span>&</span> -->
                   <!-- <span>Nodal Officer of India Today Ranking of CUK</span> -->
                 </div>
-                <p>&</p>
+                <p class="mt-0">&</p>
                 <div
                   class="inline-flex flex-col items-center text-indigo-600 font-medium px-4 py-1 rounded-full bg-indigo-50">
 
                   <!-- <span>Coordinator</span> -->
                   <!-- <span>&</span> -->
-                  <span>Nodal Officer of India Today Ranking of CUK</span>
+                  <span class="text-sm">Nodal Officer of India Today Ranking of CUK</span>
                 </div>
                 <p class="text-gray-600">Dept. of Computer Science</p>
               </div>
