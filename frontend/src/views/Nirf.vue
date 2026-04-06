@@ -77,6 +77,10 @@ export default {
     return {
       nirfReports: [
         {
+          year: '2026',
+          link: 'https://cuk.ac.in/NIRF/NIRF2026.pdf'
+        },
+        {
           year: '2025',
           link: 'https://cuk.ac.in/NIRF/NIRF%202025.pdf'
         },
