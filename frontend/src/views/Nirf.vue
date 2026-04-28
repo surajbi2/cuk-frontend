@@ -77,6 +77,10 @@ export default {
     return {
       nirfReports: [
         {
+          year: 'SDG',
+          link: 'https://cuk.ac.in/NIRF/NIRF%20-%20SDG.pdf'
+        },
+        {
           year: '2026',
           link: 'https://cuk.ac.in/NIRF/NIRF2026.pdf'
         },
